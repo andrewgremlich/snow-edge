@@ -1,7 +1,4 @@
-let showmap = require('./showmap.js')
-    
-module.exports = {
-    'begin': (mapArray) => {
+function begin(mapArray) {
         console.log(`
                 
 /*********************************************/
@@ -24,12 +21,26 @@ Available commands.
 [m]    Show Map
                 
                 `)
-    },
-    'm': (mapArray) => {
-        showmap(mapArray)
-    },
-    'end': (mapArray) => {
-        process.exit()
-        console.log('Game is over. You dead bro!')
+}
+
+function m(mapArray) {
+    let mapOutString = ''
+    for (let row of mapArray) {
+        for (let columnData of row) {
+            mapOutString += columnData + '\t'
+        }
+        mapOutString += '\n'
     }
+    process.stdout.write(mapOutString)
+}
+
+function end(mapArray) {
+    process.exit()
+    console.log('Game is over. You dead bro!')
+}
+
+module.exports = {
+    begin,
+    m,
+    end
 }
