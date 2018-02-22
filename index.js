@@ -12,10 +12,12 @@ game.genDangers()
 
 interface.on('line', (line) => {
     const availableCommands = Object.keys(commands)
-    
-    console.log(game)
 
     for (let value of availableCommands) {
-        if (value === line) commands[line](game.mapArray)
+
+        let command = value,
+            givenInitialCommand = line.charAt(0)
+
+        if (command === givenInitialCommand) commands[command](game, line)
     }
 })

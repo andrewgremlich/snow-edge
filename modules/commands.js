@@ -1,4 +1,12 @@
-function begin(mapArray) {
+const commands = `
+Available commands.
+[m]    Show Map
+[h]    Hike Mountain
+
+[c]    Show commands again
+`
+
+function b(game) {
         console.log(`
                 
 /*********************************************/
@@ -16,16 +24,14 @@ Be careful on this great adventurous endeavor!
 
 (Note to developer -> this is very similar to Minesweeper!)
 
-
-Available commands.
-[m]    Show Map
+${commands}
                 
                 `)
 }
 
-function m(mapArray) {
+function m(game) {
     let mapOutString = ''
-    for (let row of mapArray) {
+    for (let row of game.mapDisplay) {
         for (let columnData of row) {
             mapOutString += columnData + '\t'
         }
@@ -34,13 +40,32 @@ function m(mapArray) {
     process.stdout.write(mapOutString)
 }
 
-function end(mapArray) {
+function c(game) {
+    console.log(`${commands}`)   
+}
+
+function h(game, command) {
+    console.log('Hiking mountain...')
+    console.log(command)
+
+    let hikeCommand = command.split(' ')
+
+    if(hikeCommand.length !== 3) return
+
+    game.player.move(+hikeCommand[1], +hikeCommand[2])
+
+    console.log(game.player.visitedLocations)
+}
+
+function e(game) {
     process.exit()
     console.log('Game is over. You dead bro!')
 }
 
 module.exports = {
-    begin,
-    m,
-    end
+    b,
+    c,
+    e,
+    h,
+    m
 }
