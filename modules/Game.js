@@ -2,7 +2,7 @@ const Player = require('./Player.js')
 
 function Game(xDim, yDim, playerStartX, playerStartY) {
     this.mapDisplay = []
-    this.player = new Player(playerStartX, playerStartY, false)
+    this.player = new Player(playerStartX, playerStartY, false, this)
     this.xDim = xDim
     this.yDim = yDim
     this.dangers = []
@@ -11,6 +11,8 @@ function Game(xDim, yDim, playerStartX, playerStartY) {
 Game.prototype.genMap = function() {
 
     let visLoc = this.player.visitedLocations
+
+    this.mapDisplay = []
 
     for (let x = 0; x < this.xDim; x++) {
         this.mapDisplay.push([])

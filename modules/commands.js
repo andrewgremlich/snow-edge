@@ -46,15 +46,9 @@ function c(game) {
 
 function h(game, command) {
     console.log('Hiking mountain...')
-    console.log(command)
-
     let hikeCommand = command.split(' ')
-
     if(hikeCommand.length !== 3) return
-
     game.player.move(+hikeCommand[1], +hikeCommand[2])
-
-    console.log(game.player.visitedLocations)
 }
 
 function e(game) {
