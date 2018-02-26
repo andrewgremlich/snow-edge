@@ -1,7 +1,7 @@
 const commands = `
 Available commands.
 [m]    Show Map
-[h]    Hike Mountain
+[h]    Hike Mountain (example command 'h 2 2')
 
 [c]    Show commands again
 `
@@ -21,6 +21,9 @@ map when you are near danger, but you must make
 the right choice where to go!
 
 Be careful on this great adventurous endeavor! 
+
+The map is a 10 x 10 grid, with (0,0) starting
+in the top left corner.
 
 (Note to developer -> this is very similar to Minesweeper!)
 
@@ -51,15 +54,9 @@ function h(game, command) {
     game.player.move(+hikeCommand[1], +hikeCommand[2])
 }
 
-function e(game) {
-    process.exit()
-    console.log('Game is over. You dead bro!')
-}
-
 module.exports = {
     b,
     c,
-    e,
     h,
     m
 }

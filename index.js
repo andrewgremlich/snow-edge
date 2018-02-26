@@ -14,10 +14,8 @@ interface.on('line', (line) => {
     const availableCommands = Object.keys(commands)
 
     for (let value of availableCommands) {
-
         let command = value,
             givenInitialCommand = line.charAt(0)
-
         if (command === givenInitialCommand) commands[command](game, line)
     }
 })
