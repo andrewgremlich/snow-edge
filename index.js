@@ -5,7 +5,15 @@ const interface = require('./modules/interface.js'),
 console.log('You have started SNOWEDGE')
 console.log('Type `begin` when you want to play')
 
-let game = new Game(10, 10, 0, 0)
+/*
+ *  Params (yLength, xLength, yPlayerStart, xPlayerStart, yGoal, xGoal, numDangers)
+ *
+ *  I should DEFINTELY double check these numbers if they coorrespond with what is there.
+ *
+ *  Add feature to not have these numbers be magic but have them range by desired inputted difficulty.
+ *  So for example (node index.js easy OR node index.js medium OR node index.js hard)
+ * */
+let game = new Game(10, 10, 0, 0, 8, 8, 12)
 
 game.genMap()
 game.genDangers()

@@ -8,6 +8,11 @@ function Player(xPos, yPos, dead, gameObj) {
 }
 
 Player.prototype.updateVisitedLocations = function() {
+
+    /*
+     *  I need an icon logged to show dangers near
+     * */
+
     this.visitedLocations.push([this.xPos, this.yPos]) 
     this.gameObj.genMap()
 }
@@ -30,29 +35,35 @@ Player.prototype.move = function(y, x) {
 
 Player.prototype.inDanger = function () {
 
-    for (let dangerCoor of this.gameObj.dangers) {
-        if (dangerCoor[0] === this.xPos && dangerCoor[1] === this.yPos) {
-            this.die() 
+    for (let danger of this.gameObj.dangers) {
+        if (danger.dangerCoor[0] === this.xPos && danger.dangerCoor[1] === this.yPos) {
+            this.die(danger.danger) 
         }
 
-        if (dangerCoor[0] - 1 === this.xPos && dangerCoor[1] - 1 === this.yPos) this.dangersNear++
-        if (dangerCoor[0] - 1 === this.xPos && dangerCoor[1] + 1 === this.yPos) this.dangersNear++
-        if (dangerCoor[0] + 1 === this.xPos && dangerCoor[1] + 1 === this.yPos) this.dangersNear++
-        if (dangerCoor[0] + 1 === this.xPos && dangerCoor[1] - 1 === this.yPos) this.dangersNear++
+        if (danger.dangerCoor[0] - 1 === this.xPos && danger.dangerCoor[1] - 1 === this.yPos) this.dangersNear++
+        if (danger.dangerCoor[0] === this.xPos && danger.dangerCoor[1] - 1 === this.yPos) this.dangersNear++
+        if (danger.dangerCoor[0] - 1 === this.xPos && danger.dangerCoor[1] + 1 === this.yPos) this.dangersNear++
+        if (danger.dangerCoor[0] - 1 === this.xPos && danger.dangerCoor[1] === this.yPos) this.dangersNear++
+        if (danger.dangerCoor[0] + 1 === this.xPos && danger.dangerCoor[1] + 1 === this.yPos) this.dangersNear++
+        if (danger.dangerCoor[0] === this.xPos && danger.dangerCoor[1] + 1 === this.yPos) this.dangersNear++
+        if (danger.dangerCoor[0] + 1 === this.xPos && danger.dangerCoor[1] - 1 === this.yPos) this.dangersNear++
+        if (danger.dangerCoor[0] + 1 === this.xPos && danger.dangerCoor[1] === this.yPos) this.dangersNear++
     }
 
     if (this.dangersNear !== 0) {
         let isAre = this.dangersNear === 1 ? 'is' : 'are',
-            dangerOrS = this.dangersNear === 1 ? 'danger' : 'dangers' 
+            dangersOrS = this.dangersNear === 1 ? 'danger' : 'dangers' 
 
         console.log(`There ${ isAre } ${ this.dangersNear } ${ dangersOrS } near by.  Be careful!`)
     }
+
+    this.dangersNear = 0
 }
 
-Player.prototype.die = function() {
+Player.prototype.die = function(danger) {
     this.dead = true
     if (this.dead) {
-        console.log('Game is over. You dead bro!')
+        console.log(`${danger} You dead bro!`)
         process.exit()
     }
 }
