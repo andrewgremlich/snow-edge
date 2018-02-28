@@ -11,11 +11,6 @@ function Game(xDim, yDim, playerStartX, playerStartY, endGoalX, endGoalY, numDan
     this.numDangers = numDangers
 }
 
-/*
- *  SOMEHOW log how many dangers are nearby in a visited location.
- *  Have that show on the map!
- * */
-
 Game.prototype.genMap = function() {
     let visLoc = this.player.visitedLocations
     this.mapDisplay = []
@@ -32,6 +27,12 @@ Game.prototype.genMap = function() {
             yLoc = z[1]
         this.mapDisplay[xLoc][yLoc] = '*'
     }
+
+    // IF DANGER.COOR is in near VISITEDLOCATION, then log number
+    // so coor near a coor in array
+
+    console.log(this.player.visitedLocations)
+    console.log(this.dangers)
 
     this.mapDisplay[this.player.xPos][this.player.yPos] = '&'
     this.mapDisplay[this.endGoalX][this.endGoalY] = '!!'
@@ -71,8 +72,6 @@ Game.prototype.genDangers = function() {
         }
     }
 
-    console.log(this.dangers)
-    
     this.player.inDanger()
 }
 

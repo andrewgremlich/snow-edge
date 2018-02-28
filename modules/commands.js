@@ -1,12 +1,13 @@
 const commands = `
 Available commands.
+[g]    Show guide
 [m]    Show Map
 [h]    Hike Mountain (example command 'h 2 2')
 
 [c]    Show commands again
 `
 
-function b(game) {
+function g(game) {
         console.log(`
                 
 /*********************************************/
@@ -55,7 +56,7 @@ function h(game, command) {
 }
 
 module.exports = {
-    b,
+    g,
     c,
     h,
     m

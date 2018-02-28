@@ -8,11 +8,6 @@ function Player(xPos, yPos, dead, gameObj) {
 }
 
 Player.prototype.updateVisitedLocations = function() {
-
-    /*
-     *  I need an icon logged to show dangers near
-     * */
-
     this.visitedLocations.push([this.xPos, this.yPos]) 
     this.gameObj.genMap()
 }
