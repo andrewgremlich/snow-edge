@@ -24,7 +24,6 @@ Player.prototype.move = function(y, x) {
     } else {
         console.log('You have inputed invalid coordinates')
     }
-
     this.inDanger()
 }
 
@@ -35,14 +34,17 @@ Player.prototype.inDanger = function () {
             this.die(danger.danger) 
         }
 
-        if (danger.dangerCoor[0] - 1 === this.xPos && danger.dangerCoor[1] - 1 === this.yPos) this.dangersNear++
-        if (danger.dangerCoor[0] === this.xPos && danger.dangerCoor[1] - 1 === this.yPos) this.dangersNear++
-        if (danger.dangerCoor[0] - 1 === this.xPos && danger.dangerCoor[1] + 1 === this.yPos) this.dangersNear++
-        if (danger.dangerCoor[0] - 1 === this.xPos && danger.dangerCoor[1] === this.yPos) this.dangersNear++
-        if (danger.dangerCoor[0] + 1 === this.xPos && danger.dangerCoor[1] + 1 === this.yPos) this.dangersNear++
-        if (danger.dangerCoor[0] === this.xPos && danger.dangerCoor[1] + 1 === this.yPos) this.dangersNear++
-        if (danger.dangerCoor[0] + 1 === this.xPos && danger.dangerCoor[1] - 1 === this.yPos) this.dangersNear++
-        if (danger.dangerCoor[0] + 1 === this.xPos && danger.dangerCoor[1] === this.yPos) this.dangersNear++
+        let xDangerCoor = danger.dangerCoor[0],
+            yDangerCoor = danger.dangerCoor[1]
+
+        if (xDangerCoor - 1 === this.xPos && yDangerCoor - 1 === this.yPos) this.dangersNear++
+        if (xDangerCoor === this.xPos && yDangerCoor - 1 === this.yPos) this.dangersNear++
+        if (xDangerCoor - 1 === this.xPos && yDangerCoor + 1 === this.yPos) this.dangersNear++
+        if (xDangerCoor - 1 === this.xPos && yDangerCoor === this.yPos) this.dangersNear++
+        if (xDangerCoor + 1 === this.xPos && yDangerCoor + 1 === this.yPos) this.dangersNear++
+        if (xDangerCoor === this.xPos && yDangerCoor + 1 === this.yPos) this.dangersNear++
+        if (xDangerCoor + 1 === this.xPos && yDangerCoor - 1 === this.yPos) this.dangersNear++
+        if (xDangerCoor + 1 === this.xPos && yDangerCoor === this.yPos) this.dangersNear++
     }
 
     if (this.dangersNear !== 0) {

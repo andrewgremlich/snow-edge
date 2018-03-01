@@ -11,6 +11,10 @@ The map is a 10 x 10 grid, with (0,0) startingin the top left corner.
 ## Use Instructions
 To start the game `node index.js easy` OR `node index.js medium` OR `node index.js hard`.
 
+Player icon is a `&`.
+Unknown location is a `N`.
+Visited location with no dangers is a `*`.
+
 Available commands to be typed into running process.
 - `g`
   - Show guide
@@ -20,3 +24,11 @@ Available commands to be typed into running process.
   - Hike Mountain (example command `h 2 2`)
 - `c`
   - Show commands again
+
+## Wanted Features to add
+- Add flare feature to preview areas on map.
+- Add visibility to see further than one by one.
+- Reset the dangers on the grid after a certain point of time?
+- Fix grid system for developer don't get it backwards!
+- No map on hard or especially hard difficulty?
+- ****Show numbers of dangers close by

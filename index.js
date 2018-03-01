@@ -19,7 +19,7 @@ const interface = require('./modules/interface.js'),
             xPlayerStart: 1,
             yGoal: 10,
             xGoal: 10,
-            numDangers: 20
+            numDangers: 30
         },
         hard: {
             yLength: 14,
@@ -28,12 +28,9 @@ const interface = require('./modules/interface.js'),
             xPlayerStart: 2,
             yGoal: 12,
             xGoal: 12,
-            numDangers: 30
+            numDangers: 70
         }
     }
-
-//for HARD diff make now map output?
-//the coordinate grid and locations are messed up.  clean it to make sense!
 
 console.log(`You have started SNOWEDGE on ${difficulty} difficulty.`)
 console.log('Type `guide` to see the instructions')

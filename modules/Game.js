@@ -1,13 +1,13 @@
 const Player = require('./Player.js')
 
-function Game(xDim, yDim, playerStartX, playerStartY, endGoalX, endGoalY, numDangers) {
+function Game(yLength, xLength, yPlayerStart, xPlayerStart, yGoal, xGoal, numDangers) {
     this.mapDisplay = []
-    this.player = new Player(playerStartX, playerStartY, false, this)
-    this.xDim = xDim
-    this.yDim = yDim
+    this.player = new Player(yPlayerStart, xPlayerStart, false, this)
+    this.yLength = yLength
+    this.xLength = xLength
     this.dangers = []
-    this.endGoalX = endGoalX
-    this.endGoalY = endGoalY
+    this.yGoal = yGoal
+    this.xGoal = xGoal
     this.numDangers = numDangers
 }
 
@@ -15,27 +15,43 @@ Game.prototype.genMap = function() {
     let visLoc = this.player.visitedLocations
     this.mapDisplay = []
 
-    for (let x = 0; x < this.xDim; x++) {
+    for (let y = 0; y < this.yLength; y++) {
         this.mapDisplay.push([])
-        for (let y = 0; y < this.yDim; y++) {
-            this.mapDisplay[x].push('N')
+        for (let x = 0; x < this.xLength; x++) {
+            this.mapDisplay[y].push('N')
         }
     }
 
     for (let z of visLoc) {
         let xLoc = z[0],
-            yLoc = z[1]
+            yLoc = z[1],
+            dangersCloseBy = 0
+
         this.mapDisplay[xLoc][yLoc] = '*'
+
+        for (let danger of this.dangers) {
+
+            let dangerCoor = danger.dangerCoor,
+                xVisit = xLoc, 
+                yVisit = yLoc 
+
+            if (xVisit + 1 === dangerCoor[0] && yVisit + 1 === dangerCoor[1]) dangersCloseBy++
+            if (xVisit + 1 === dangerCoor[0] && yVisit - 1 === dangerCoor[1]) dangersCloseBy++
+            if (xVisit + 1 === dangerCoor[0] && yVisit + 0 === dangerCoor[1]) dangersCloseBy++
+            if (xVisit + 0 === dangerCoor[0] && yVisit + 1 === dangerCoor[1]) dangersCloseBy++
+            if (xVisit - 1 === dangerCoor[0] && yVisit + 1 === dangerCoor[1]) dangersCloseBy++
+            if (xVisit - 1 === dangerCoor[0] && yVisit + 0 === dangerCoor[1]) dangersCloseBy++
+            if (xVisit - 1 === dangerCoor[0] && yVisit - 1 === dangerCoor[1]) dangersCloseBy++
+            if (xVisit - 0 === dangerCoor[0] && yVisit - 1 === dangerCoor[1]) dangersCloseBy++
+        }
+
+        if (dangersCloseBy > 0) {
+            this.mapDisplay[xLoc][yLoc] = dangersCloseBy
+        }
     }
 
-    // IF DANGER.COOR is in near VISITEDLOCATION, then log number
-    // so coor near a coor in array
-
-    console.log(this.player.visitedLocations)
-    console.log(this.dangers)
-
     this.mapDisplay[this.player.xPos][this.player.yPos] = '&'
-    this.mapDisplay[this.endGoalX][this.endGoalY] = '!!'
+    this.mapDisplay[this.yGoal][this.xGoal] = '!!'
 }
 
 Game.prototype.genDangers = function() {
@@ -53,8 +69,8 @@ Game.prototype.genDangers = function() {
         dangersGenerated = []
 
     while (danger <= this.numDangers) {
-        let ranX = Math.floor(Math.random() * this.xDim) + 1,
-            ranY = Math.floor(Math.random() * this.yDim) + 1,
+        let ranX = Math.floor(Math.random() * this.yLength) + 1,
+            ranY = Math.floor(Math.random() * this.xLength) + 1,
             ranDanger = Math.floor(Math.random() * dangers.length)
             exists = false
         
