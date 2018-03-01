@@ -34,7 +34,7 @@ Game.prototype.genMap = function() {
             let dangerCoor = danger.dangerCoor,
                 xVisit = xLoc, 
                 yVisit = yLoc 
-
+            
             if (xVisit + 1 === dangerCoor[0] && yVisit + 1 === dangerCoor[1]) dangersCloseBy++
             if (xVisit + 1 === dangerCoor[0] && yVisit - 1 === dangerCoor[1]) dangersCloseBy++
             if (xVisit + 1 === dangerCoor[0] && yVisit + 0 === dangerCoor[1]) dangersCloseBy++
@@ -45,13 +45,16 @@ Game.prototype.genMap = function() {
             if (xVisit - 0 === dangerCoor[0] && yVisit - 1 === dangerCoor[1]) dangersCloseBy++
         }
 
-        if (dangersCloseBy > 0) {
-            this.mapDisplay[xLoc][yLoc] = dangersCloseBy
-        }
+        if (dangersCloseBy > 0) this.mapDisplay[xLoc][yLoc] = dangersCloseBy
     }
 
     this.mapDisplay[this.player.xPos][this.player.yPos] = '&'
-    this.mapDisplay[this.yGoal][this.xGoal] = '!!'
+    this.mapDisplay[this.xGoal][this.yGoal] = '!!'
+
+    if (this.player.xPos === this.xGoal && this.player.yPos ===  this.yGoal) {
+        console.log('You won the game!')
+        process.exit()
+    }
 }
 
 Game.prototype.genDangers = function() {

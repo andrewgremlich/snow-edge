@@ -38,13 +38,13 @@ Player.prototype.inDanger = function () {
             yDangerCoor = danger.dangerCoor[1]
 
         if (xDangerCoor - 1 === this.xPos && yDangerCoor - 1 === this.yPos) this.dangersNear++
-        if (xDangerCoor === this.xPos && yDangerCoor - 1 === this.yPos) this.dangersNear++
+        if (xDangerCoor - 0 === this.xPos && yDangerCoor - 1 === this.yPos) this.dangersNear++
         if (xDangerCoor - 1 === this.xPos && yDangerCoor + 1 === this.yPos) this.dangersNear++
-        if (xDangerCoor - 1 === this.xPos && yDangerCoor === this.yPos) this.dangersNear++
+        if (xDangerCoor - 1 === this.xPos && yDangerCoor + 0 === this.yPos) this.dangersNear++
         if (xDangerCoor + 1 === this.xPos && yDangerCoor + 1 === this.yPos) this.dangersNear++
-        if (xDangerCoor === this.xPos && yDangerCoor + 1 === this.yPos) this.dangersNear++
+        if (xDangerCoor + 0 === this.xPos && yDangerCoor + 1 === this.yPos) this.dangersNear++
         if (xDangerCoor + 1 === this.xPos && yDangerCoor - 1 === this.yPos) this.dangersNear++
-        if (xDangerCoor + 1 === this.xPos && yDangerCoor === this.yPos) this.dangersNear++
+        if (xDangerCoor + 1 === this.xPos && yDangerCoor - 0 === this.yPos) this.dangersNear++
     }
 
     if (this.dangersNear !== 0) {
