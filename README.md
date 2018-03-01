@@ -1,4 +1,4 @@
-# snow-edge
+# SNOWEDGE
 Text based Minesweeper-like maze game.
 
 ## Theme
@@ -6,16 +6,17 @@ You are a daring explorer.  You decided to scale Mount Denali in a snow storm!  
 
 Be careful on this great adventurous endeavor! 
 
-The map is a 10 x 10 grid, with (0,0) startingin the top left corner.
+The map is a 2d grid, with (0,0) starting in the top left corner.
 
 ## Use Instructions
 To start the game `node index.js easy` OR `node index.js medium` OR `node index.js hard`.
 
-Player icon is a `&`.
-Unknown location is a `N`.
-Visited location with no dangers is a `*`.
+* Player icon is a `&`.
+* Unknown location is a `N`.
+* Visited location with no dangers is a `*`.
+* Nearby dangers appear as a number i.e. `1` or `2`.
 
-Available commands to be typed into running process.
+Available commands for game.
 - `g`
   - Show guide
 - `m`
@@ -26,9 +27,8 @@ Available commands to be typed into running process.
   - Show commands again
 
 ## Wanted Features to add
-- Add flare feature to preview areas on map.
-- Add visibility to see further than one by one.
-- Reset the dangers on the grid after a certain point of time?
-- Fix grid system for developer don't get it backwards!
-- No map on hard or especially hard difficulty?
-- ****Show numbers of dangers close by
+- Add flare feature to preview areas on map.  More flares for harder and less for easy.
+- Add visibility to see further than one by one on easy.  More visibility on easy and less on hard?
+- Reset the dangers on the grid after a certain point of time?  Only resets on especially hard?
+- No visible map on hard or especially hard difficulty?
+- Add lives?  More lives for easy and less for hard?
