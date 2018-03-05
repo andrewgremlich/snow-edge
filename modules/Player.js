@@ -1,10 +1,11 @@
-function Player(xPos, yPos, dead, gameObj) {
-    this.xPos = xPos
-    this.yPos = yPos
-    this.dead = dead
+function Player(playerData, gameObj) {
+    this.lives = playerData.lives
+    this.xPos = playerData.xPlayerStart
+    this.yPos = playerData.yPlayerStart
+    this.dead = playerData.dead
     this.dangersNear = 0
     this.gameObj = gameObj
-    this.visitedLocations = [[xPos, yPos]]
+    this.visitedLocations = [[playerData.xPlayerStart, playerData.yPlayerStart]]
 }
 
 Player.prototype.updateVisitedLocations = function() {
@@ -31,7 +32,16 @@ Player.prototype.inDanger = function () {
 
     for (let danger of this.gameObj.dangers) {
         if (danger.dangerCoor[0] === this.xPos && danger.dangerCoor[1] === this.yPos) {
-            this.die(danger.danger) 
+            if (this.lives === 0) {
+                this.die(danger.danger) 
+            } else {
+                this.lives--
+                this.xPos = 0
+                this.yPose = 0
+                console.log(`${danger.danger} You dead bro!`)
+                console.log('Lost one life. Restarting at 0, 0')
+                this.gameObj.genMap()
+            }
         }
 
         let xDangerCoor = danger.dangerCoor[0],

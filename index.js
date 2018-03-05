@@ -10,7 +10,8 @@ const interface = require('./modules/interface.js'),
             xPlayerStart: 0,
             yGoal: 8,
             xGoal: 8,
-            numDangers: 12
+            numDangers: 12,
+            lives: 5
         },
         medium: {
             yLength: 12,
@@ -19,7 +20,8 @@ const interface = require('./modules/interface.js'),
             xPlayerStart: 1,
             yGoal: 10,
             xGoal: 10,
-            numDangers: 30
+            numDangers: 30,
+            lives: 3
         },
         hard: {
             yLength: 14,
@@ -28,15 +30,16 @@ const interface = require('./modules/interface.js'),
             xPlayerStart: 2,
             yGoal: 12,
             xGoal: 12,
-            numDangers: 70
+            numDangers: 70,
+            lives: 1
         }
     }
 
 console.log(`You have started SNOWEDGE on ${difficulty} difficulty.`)
 console.log('Type `guide` to see the instructions')
 
-let diff = diffRanges[difficulty],
-    game = new Game(diff.yLength, diff.xLength, diff.yPlayerStart, diff.xPlayerStart, diff.yGoal, diff.xGoal, diff.numDangers)
+let gameSettings = diffRanges[difficulty],
+    game = new Game(gameSettings)
 
 game.genMap()
 game.genDangers()

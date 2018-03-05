@@ -31,4 +31,5 @@ Available commands for game.
 - Add visibility to see further than one by one on easy.  More visibility on easy and less on hard?
 - Reset the dangers on the grid after a certain point of time?  Only resets on especially hard?
 - No visible map on hard or especially hard difficulty?
-- Add lives?  More lives for easy and less for hard?
+- add rocks for obstacles in the game.
+- lives have been added. be sure to change the map when live is lost an is relocated.

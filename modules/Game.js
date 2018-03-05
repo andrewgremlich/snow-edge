@@ -1,14 +1,19 @@
 const Player = require('./Player.js')
 
-function Game(yLength, xLength, yPlayerStart, xPlayerStart, yGoal, xGoal, numDangers) {
+function Game(gameSettings) {
     this.mapDisplay = []
-    this.player = new Player(yPlayerStart, xPlayerStart, false, this)
-    this.yLength = yLength
-    this.xLength = xLength
+    this.player = new Player({
+        yPlayerStart: gameSettings.yPlayerStart,
+        xPlayerStart: gameSettings.xPlayerStart,
+        lives: gameSettings.lives,
+        dead: false
+    }, this)
+    this.yLength = gameSettings.yLength
+    this.xLength = gameSettings.xLength
     this.dangers = []
-    this.yGoal = yGoal
-    this.xGoal = xGoal
-    this.numDangers = numDangers
+    this.yGoal = gameSettings.yGoal
+    this.xGoal = gameSettings.xGoal
+    this.numDangers = gameSettings.numDangers
 }
 
 Game.prototype.genMap = function() {
