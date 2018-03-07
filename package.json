@@ -1,12 +1,12 @@
 {
   "name": "snow-edge",
   "version": "1.0.0",
-  "description": "Text based RPG game.",
+  "description": "Hike up Mount Denali on a grand text-based adventure!",
   "main": "index.js",
   "scripts": {
     "dev:eslint": "./node_modules/.bin/eslint index.js;  ./node_modules/.bin/eslint modules/"
   },
-  "author": "",
+  "author": "Andrew Gremlich",
   "license": "MIT",
   "devDependencies": {
     "eslint": "^4.18.0"

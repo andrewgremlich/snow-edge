@@ -8,13 +8,23 @@ Be careful on this great adventurous endeavor!
 
 The map is a 2d grid, with (0,0) starting in the top left corner.
 
+## Download
+
+1. Install [Nodejs from website](https://nodejs.org/en/ "Nodejs Website")
+2. Git clone the project `https://github.com/andrewgremlich/snow-edge.git`
+3. Open up terminal or command prompt and navigate to the location of the SNOWEDGE project.
+
 ## Use Instructions
 To start the game `node index.js easy` OR `node index.js medium` OR `node index.js hard`.
+
+### Legend
 
 * Player icon is a `&`.
 * Unknown location is a `N`.
 * Visited location with no dangers is a `*`.
-* Nearby dangers appear as a number i.e. `1` or `2`.
+* Visited location with known dangers is a `X`.
+* Nearby dangers appear as a number 
+    * i.e. `1` or `2`.
 
 Available commands for game.
 - `g`
@@ -29,7 +39,6 @@ Available commands for game.
 ## Wanted Features to add
 - Add flare feature to preview areas on map.  More flares for harder and less for easy.
 - Add visibility to see further than one by one on easy.  More visibility on easy and less on hard?
-- Reset the dangers on the grid after a certain point of time?  Only resets on especially hard?
+- Reset the dangers on the grid after a certain point of time?  Only resets on especially hard?  When a life was lost?
 - No visible map on hard or especially hard difficulty?
 - add rocks for obstacles in the game.
-- lives have been added. be sure to change the map when live is lost an is relocated.

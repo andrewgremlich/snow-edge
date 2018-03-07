@@ -37,9 +37,10 @@ Player.prototype.inDanger = function () {
             } else {
                 this.lives--
                 this.xPos = 0
-                this.yPose = 0
+                this.yPos = 0
                 console.log(`${danger.danger} You dead bro!`)
                 console.log('Lost one life. Restarting at 0, 0')
+                console.log(`You have ${ this.lives } ${ this.lives === 1 ? 'life' : 'lives' } left.`)
                 this.gameObj.genMap()
             }
         }
