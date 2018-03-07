@@ -4,6 +4,7 @@ const interface = require('./modules/interface.js'),
     difficulty = process.argv[2] ? process.argv[2] : 'easy',
     diffRanges = {
         easy: {
+            difficulty: 'easy',
             yLength: 10,
             xLength: 10,
             yPlayerStart: 0,
@@ -14,6 +15,7 @@ const interface = require('./modules/interface.js'),
             lives: 5
         },
         medium: {
+            difficulty: 'medium',
             yLength: 12,
             xLength: 12,
             yPlayerStart: 1,
@@ -24,6 +26,7 @@ const interface = require('./modules/interface.js'),
             lives: 3
         },
         hard: {
+            difficulty: 'hard',
             yLength: 14,
             xLength: 14,
             yPlayerStart: 2,

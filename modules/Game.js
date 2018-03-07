@@ -8,6 +8,7 @@ function Game(gameSettings) {
         lives: gameSettings.lives,
         dead: false
     }, this)
+    this.difficulty = gameSettings.difficulty
     this.yLength = gameSettings.yLength
     this.xLength = gameSettings.xLength
     this.dangers = []
