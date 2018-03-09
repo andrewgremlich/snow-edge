@@ -17,9 +17,12 @@ The map is a 2d grid, with (0,0) starting in the top left corner.
 ## Use Instructions
 To start the game `node index.js easy` OR `node index.js medium` OR `node index.js hard`.
 
+### Legend
+
 * Player icon is a `&`.
 * Unknown location is a `N`.
 * Visited location with no dangers is a `*`.
+* Visited location with known dangers is a `X`.
 * Nearby dangers appear as a number 
     * i.e. `1` or `2`.
 
@@ -38,5 +41,4 @@ Available commands for game.
 - Add visibility to see further than one by one on easy.  More visibility on easy and less on hard?
 - Reset the dangers on the grid after a certain point of time?  Only resets on especially hard?  When a life was lost?
 - No visible map on hard or especially hard difficulty?
-    * added difficulty setting
 - add rocks for obstacles in the game.

@@ -49,6 +49,9 @@ Game.prototype.genMap = function() {
             if (xVisit - 1 === dangerCoor[0] && yVisit + 0 === dangerCoor[1]) dangersCloseBy++
             if (xVisit - 1 === dangerCoor[0] && yVisit - 1 === dangerCoor[1]) dangersCloseBy++
             if (xVisit - 0 === dangerCoor[0] && yVisit - 1 === dangerCoor[1]) dangersCloseBy++
+
+            if (xVisit === dangerCoor[0] && yVisit === dangerCoor[1])
+                this.mapDisplay[dangerCoor[0]][dangerCoor[1]] = 'X'
         }
 
         if (dangersCloseBy > 0) this.mapDisplay[xLoc][yLoc] = dangersCloseBy
