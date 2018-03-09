@@ -54,7 +54,7 @@ Game.prototype.genMap = function() {
                 this.mapDisplay[dangerCoor[0]][dangerCoor[1]] = 'X'
         }
 
-        if (dangersCloseBy > 0) this.mapDisplay[xLoc][yLoc] = dangersCloseBy
+        if (dangersCloseBy > 0 && this.mapDisplay[xLoc][yLoc] !== 'X') this.mapDisplay[xLoc][yLoc] = dangersCloseBy
     }
 
     this.mapDisplay[this.player.xPos][this.player.yPos] = '&'
@@ -69,12 +69,14 @@ Game.prototype.genMap = function() {
 Game.prototype.genDangers = function() {
 
     const dangers = [
-        'You fell off a cliff.',
-        'You got eaten by a pack of wolves.',
-        'You got got by a blizzard.',
-        'You got mauled by a bear.',
+        'You fell off a cliff. Yahoooooooooo!',
+        'A pack of wolves got you.  You are not Mowgli?',
+        'A blizzard trapped you.  Not from Dairy Queen.',
+        'A bear mauled you.  No safety there!',
         'You saw bigfoot???',
-        'A penguin speared you with its beak.'
+        'A penguin speared you with its beak.',
+        'A moose licked and left you in its tracks.',
+        'A reindeer ran over you.'
       ]
     
     let danger = 0,
