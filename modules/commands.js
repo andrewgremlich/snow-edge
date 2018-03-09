@@ -5,7 +5,22 @@ Available commands.
 [h]    Hike Mountain (example command 'h 2 2')
 
 [c]    Show commands again
+[l]    Show Legend
 `
+
+function l(game) {
+    console.log(`
+
+/*****   MAP LEGEND   *****/
+
+* Player icon is a '&'.
+* Unknown location is a 'N'.
+* Visited location with no dangers is a '*'.
+* Visited location with known dangers is a 'X'.
+* Nearby dangers appear as a number 
+    * i.e. '1' or '2'.
+            `)
+}
 
 function g(game) {
         console.log(`
@@ -59,5 +74,6 @@ module.exports = {
     g,
     c,
     h,
+    l,
     m
 }
