@@ -6,7 +6,7 @@ You are a daring explorer.  You decided to scale Mount Denali in a snow storm!  
 
 Be careful on this great adventurous endeavor! 
 
-The map is a 2d grid, with (0,0) starting in the top left corner.
+The map is a 2d grid, with (1, 1) starting in the top left corner.
 
 ## Download
 
@@ -39,6 +39,7 @@ Available commands for game.
 ## Wanted Features to add
 - Add flare feature to preview areas on map.  More flares for harder and less for easy.
 - Add visibility to see further than one by one on easy.  More visibility on easy and less on hard?
-- Reset the dangers on the grid after a certain point of time?  Only resets on especially hard?  When a life was lost?
 - No visible map on hard or especially hard difficulty?
 - add rocks for obstacles in the game.
+- mark suspected dangers
+- change grid to letters and numbers
