@@ -1,6 +1,6 @@
 {
   "name": "snow-edge",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Hike up Mount Denali on a grand text-based adventure!",
   "main": "index.js",
   "scripts": {

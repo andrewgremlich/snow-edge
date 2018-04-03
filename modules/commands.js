@@ -65,9 +65,21 @@ function c(game) {
 
 function h(game, command) {
     console.log('Hiking mountain...')
+
     let hikeCommand = command.split(' ')
+    
     if(hikeCommand.length !== 3) return
+    if(+hikeCommand[1] < 1
+            || +hikeCommand[2] < 1
+            || +hikeCommand[1] > game.xLength
+            || +hikeCommand[2] > game.yLength) {
+        console.log('Invalid coordinates')
+        console.log(`Must input coordinates (1,1) to (${ game.xLength },${ game.yLength }`)
+        return
+    }
     game.player.move(+hikeCommand[1], +hikeCommand[2])
+
+    m(game)
 }
 
 module.exports = {

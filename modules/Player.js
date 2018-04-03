@@ -1,5 +1,7 @@
 function Player(playerData, gameObj) {
     this.lives = playerData.lives
+    this.xGameStart = playerData.xPlayerStart
+    this.yGameStart = playerData.yPlayerStart 
     this.xPos = playerData.xPlayerStart
     this.yPos = playerData.yPlayerStart
     this.dead = playerData.dead
@@ -39,7 +41,7 @@ Player.prototype.inDanger = function () {
                 this.xPos = 0
                 this.yPos = 0
                 console.log(`${danger.danger} You dead bro!`)
-                console.log('Lost one life. Restarting at 0, 0')
+                console.log(`Lost one life. Restarting at ${ this.xGameStart + 1 }, ${ this.yGameStart + 1 }`)
                 console.log(`You have ${ this.lives } ${ this.lives === 1 ? 'life' : 'lives' } left.`)
                 this.gameObj.genMap()
             }
