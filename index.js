@@ -17,6 +17,9 @@ interface.on('line', (line) => {
     const availableCommands = Object.keys(commands),
             givenInitialCommand = line.charAt(0)
 
+    if(!availableCommands.includes(givenInitialCommand))
+        console.log('Command not found')
+
     for (let value of availableCommands) {
         let command = value
         if (command === givenInitialCommand) commands[command](game, line)
