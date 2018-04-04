@@ -31,8 +31,9 @@ Available commands for game.
   - Show guide
 - `m`
   - Show Map
-- `h {n} {n}`
+- `h {x} {y}`
   - Hike Mountain (example command `h 2 2`)
+  - Coordinate format can be about anything as long as there is an "h" and two numbers.
 - `c`
   - Show commands again
 

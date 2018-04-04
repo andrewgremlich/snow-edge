@@ -10,5 +10,8 @@
   "license": "MIT",
   "devDependencies": {
     "eslint": "^4.18.0"
+  },
+  "dependencies": {
+    "node-emoji": "^1.8.1"
   }
 }
