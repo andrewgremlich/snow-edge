@@ -12,6 +12,7 @@ function Game(gameSettings) {
     this.yLength = gameSettings.yLength
     this.xLength = gameSettings.xLength
     this.dangers = []
+    this.suspectedDangers = []
     this.yGoal = gameSettings.yGoal
     this.xGoal = gameSettings.xGoal
     this.numDangers = gameSettings.numDangers
@@ -26,6 +27,10 @@ Game.prototype.genMap = function() {
         for (let x = 0; x < this.xLength; x++) {
             this.mapDisplay[y].push('N')
         }
+    }
+
+    for (let suspected of this.suspectedDangers) {
+        this.mapDisplay[suspected[1] - 1][suspected[0] - 1] = '?' 
     }
 
     for (let z of visLoc) {

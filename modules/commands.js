@@ -1,22 +1,56 @@
 const commands = `
 Available commands.
+***Basic Commands
 [g]    Show guide
 [m]    Show Map
 [h]    Hike Mountain (example command 'h 2 2')
 
+***Utility Commands
+[s]    Mark suspected danger
+
+***Help Commands
 [c]    Show commands again
 [l]    Show Legend
 `
+
+function validateCoordinates(game, command) {
+    const numCheck = /\d+/g,
+        coordinates = command.match(numCheck),
+        y = +coordinates[1],
+        x = +coordinates[0]
+
+    if (!numCheck.test(command) || coordinates.length !== 2) { 
+        console.log('Invalid coordinates')
+        console.log('Must be two numbers')
+        return false
+    }
+    if(x < 1 || y < 1 || x > game.xLength || y > game.yLength) {
+        console.log('Must be valid x and y coordinates')
+        console.log(`Must input coordinates (1,1) to (${ game.xLength },${ game.yLength })`)
+        return false
+    }
+
+    return [ x, y ]
+}
+
+function s(game, command) {
+    console.log('Marking suspected danger on map...')
+    let coordinates = validateCoordinates(game, command)
+    if (coordinates) game.suspectedDangers.push(coordinates)
+    m(game)
+}
 
 function l(game) {
     console.log(`
 
 /*****   MAP LEGEND   *****/
 
-* Player icon is a '&'.
-* Unknown location is a 'N'.
-* Visited location with no dangers is a '*'.
-* Visited location with known dangers is a 'X'.
+* '&'     Player Icon
+* 'N'     Unknown location
+* '*'     Visited location with no danger.
+* 'X'     Visited location with known danger.
+* '?'     Location with suspected danger.
+
 * Nearby dangers appear as a number 
     * i.e. '1' or '2'.
             `)
@@ -49,6 +83,9 @@ ${commands}
 }
 
 function m(game) {
+
+    game.genMap()
+
     let mapOutString = ''
     for (let row of game.mapDisplay) {
         for (let columnData of row) {
@@ -64,31 +101,18 @@ function c(game) {
 }
 
 function h(game, command) {
+
+    console.log('\x1b[34m')
     console.log('Hiking mountain...')
+    console.log('\x1b[0m')
 
-    const numCheck = /\d+/g,
-        coordinates = command.match(numCheck)
-
-    if (!numCheck.test(command) || coordinates.length !== 2) { 
-        console.log('Invalid coordinates')
-        console.log('Must be two numbers')
-        return
-    }
-
-    if(+coordinates[1] < 1
-            || +coordinates[0] < 1
-            || +coordinates[1] > game.xLength
-            || +coordinates[0] > game.yLength) {
-        console.log('Must be valid x and y coordinates')
-        console.log(`Must input coordinates (1,1) to (${ game.xLength },${ game.yLength })`)
-        return
-    }
-    game.player.move(+coordinates[0], +coordinates[1])
-
+    let coordinates = validateCoordinates(game, command)
+    if (coordinates) game.player.move(+coordinates[0], +coordinates[1])
     m(game)
 }
 
 module.exports = {
+    s,
     g,
     c,
     h,

@@ -64,7 +64,10 @@ Player.prototype.inDanger = function () {
         let isAre = this.dangersNear === 1 ? 'is' : 'are',
             dangersOrS = this.dangersNear === 1 ? 'danger' : 'dangers' 
 
+        console.log('\x1b[31m')
+
         console.log(`There ${ isAre } ${ this.dangersNear } ${ dangersOrS } near by.  Be careful!`)
+        console.log('\x1b[0m')
     }
 
     this.dangersNear = 0
