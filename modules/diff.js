@@ -31,6 +31,17 @@ let diffRanges = {
             xGoal: 12,
             numDangers: 70,
             lives: 1
+        },
+        ludicrous: {
+            difficulty: 'ludicrous',
+            yLength: 14,
+            xLength: 14,
+            yPlayerStart: 2,
+            xPlayerStart: 2,
+            yGoal: 12,
+            xGoal: 12,
+            numDangers: 70,
+            lives: 1
         }
     }
 

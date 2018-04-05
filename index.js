@@ -1,27 +1,34 @@
-const interface = require('./modules/interface.js'),
-    commands = require('./modules/commands.js'),
-    Game = require('./modules/Game.js'),
-    diffRanges = require('./modules/diff.js'),
-    difficulty = process.argv[2] ? process.argv[2] : 'easy'
+const readline = require('readline'),
+  interface = rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+    terminal: false
+  }),
+  emoji = require('node-emoji'),
+  commands = require('./modules/commands.js'),
+  Game = require('./modules/Game.js'),
+  diffRanges = require('./modules/diff.js'),
+  difficulty = process.argv[2] ? process.argv[2] : 'easy'
 
+console.log(emoji.get('snowflake'))
 console.log(`You have started SNOWEDGE on ${difficulty} difficulty.`)
 console.log('Type `guide` to see the instructions')
 
 let gameSettings = diffRanges[difficulty],
-    game = new Game(gameSettings)
+  game = new Game(gameSettings)
 
 game.genMap()
 game.genDangers()
 
 interface.on('line', (line) => {
-    const availableCommands = Object.keys(commands),
-            givenInitialCommand = line.charAt(0)
+  const availableCommands = Object.keys(commands),
+    givenInitialCommand = line.charAt(0)
 
-    if(!availableCommands.includes(givenInitialCommand))
-        console.log('Command not found')
+  if (!availableCommands.includes(givenInitialCommand))
+    console.log('Command not found')
 
-    for (let value of availableCommands) {
-        let command = value
-        if (command === givenInitialCommand) commands[command](game, line)
-    }
+  for (let value of availableCommands) {
+    let command = value
+    if (command === givenInitialCommand) commands[command](game, line)
+  }
 })

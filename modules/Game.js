@@ -1,4 +1,5 @@
 const Player = require('./Player.js')
+const emoji = require('node-emoji')
 
 function Game(gameSettings) {
     this.mapDisplay = []
@@ -12,6 +13,7 @@ function Game(gameSettings) {
     this.yLength = gameSettings.yLength
     this.xLength = gameSettings.xLength
     this.dangers = []
+    this.suspectedDangers = []
     this.yGoal = gameSettings.yGoal
     this.xGoal = gameSettings.xGoal
     this.numDangers = gameSettings.numDangers
@@ -28,6 +30,10 @@ Game.prototype.genMap = function() {
         }
     }
 
+    for (let suspected of this.suspectedDangers) {
+        this.mapDisplay[suspected[1] - 1][suspected[0] - 1] = '?'
+    }
+
     for (let z of visLoc) {
         let xLoc = z[0],
             yLoc = z[1],
@@ -38,9 +44,9 @@ Game.prototype.genMap = function() {
         for (let danger of this.dangers) {
 
             let dangerCoor = danger.dangerCoor,
-                xVisit = xLoc, 
-                yVisit = yLoc 
-            
+                xVisit = xLoc,
+                yVisit = yLoc
+
             if (xVisit + 1 === dangerCoor[0] && yVisit + 1 === dangerCoor[1]) dangersCloseBy++
             if (xVisit + 1 === dangerCoor[0] && yVisit - 1 === dangerCoor[1]) dangersCloseBy++
             if (xVisit + 1 === dangerCoor[0] && yVisit + 0 === dangerCoor[1]) dangersCloseBy++
@@ -62,6 +68,7 @@ Game.prototype.genMap = function() {
 
     if (this.player.xPos === this.xGoal && this.player.yPos ===  this.yGoal) {
         console.log('You won the game!')
+        console.log(emoji.get('smiley'), ' Yay!')
         process.exit()
     }
 }
@@ -78,7 +85,7 @@ Game.prototype.genDangers = function() {
         'A moose licked and left you in its tracks.',
         'A reindeer ran over you.'
       ]
-    
+
     let danger = 0,
         dangersGenerated = []
 
@@ -87,13 +94,13 @@ Game.prototype.genDangers = function() {
             ranY = Math.floor(Math.random() * this.xLength) + 1,
             ranDanger = Math.floor(Math.random() * dangers.length)
             exists = false
-        
+
         for (let dan of dangersGenerated) {
-            if (dan[0] === ranX && dan[0] === ranY) 
+            if (dan[0] === ranX && dan[0] === ranY)
                 exists = true
         }
 
-        if (!exists) { 
+        if (!exists) {
             this.dangers.push({
                 dangerCoor: [ranX, ranY],
                 danger: dangers[ranDanger]
