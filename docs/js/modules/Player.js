@@ -27,15 +27,13 @@ Player.prototype.move = function(y, x) {
     yAbs = Math.abs(newYpos - this.yPos)
 
   if (xAbs > 1 || yAbs > 1) {
-    outputToScreen(emoji['hand'])
-    outputToScreen('Can not move farther than one square')
+    outputToScreen(`${emoji['hand']} Can not move farther than one square`)
   } else if (xAbs >= 1 || yAbs >= 1) {
     this.xPos = newXpos
     this.yPos = newYpos
     this.updateVisitedLocations()
   } else {
-    outputToScreen(emoji['confused'])
-    outputToScreen('You have inputed invalid coordinates')
+    outputToScreen(`${emoji['confused']} You have inputed invalid coordinates`)
   }
   this.inDanger()
 }
@@ -50,11 +48,10 @@ Player.prototype.inDanger = function() {
         this.die(danger.danger)
       } else {
         this.lives--
-          this.xPos = this.xGameStart
+        this.xPos = this.xGameStart
         this.yPos = this.yGameStart
         outputToScreen(`${danger.danger} You dead bro!`)
-        outputToScreen(emoji['hammer'])
-        outputToScreen(emoji['heart'])
+        outputToScreen(`${ emoji['hammer'] } ${ emoji['heart'] } `)
         outputToScreen(`Lost one life. Restarting at ${ this.xGameStart + 1 }, ${ this.yGameStart + 1 }`)
         outputToScreen(`You have ${ this.lives } ${ this.lives === 1 ? 'life' : 'lives' } left.`)
         for (let i = 0; i < this.lives; i++) {
@@ -81,9 +78,7 @@ Player.prototype.inDanger = function() {
     let isAre = this.dangersNear === 1 ? 'is' : 'are',
       dangersOrS = this.dangersNear === 1 ? 'danger' : 'dangers'
 
-    // outputToScreen('\x1b[31m')
     outputToScreen(`There ${ isAre } ${ this.dangersNear } ${ dangersOrS } near by.  Be careful!`)
-    // outputToScreen('\x1b[0m')
   }
 }
 
@@ -92,7 +87,7 @@ Player.prototype.die = function(danger) {
   if (this.dead) {
     outputToScreen(`${danger} You dead bro!`)
     // command for game over? to reset?
-    // process.exit()
+    // TODO process.exit()
   }
 }
 

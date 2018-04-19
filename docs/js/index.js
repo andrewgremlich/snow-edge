@@ -11,14 +11,6 @@ outputToScreen(emoji['snowflake'])
 let inputer = document.querySelector('input[type="text"]'),
   blinkingCaret = document.querySelector('.blinking-caret')
 
-inputer.onfocus = () => {
-  blinkingCaret.style.visibility = 'hidden'
-}
-
-inputer.onblur = () => {
-  blinkingCaret.style.visibility = 'visible'
-}
-
 outputToScreen(`You have started SNOWEDGE on ${difficulty} difficulty.`)
 outputToScreen('Type `guide` to see the instructions')
 
@@ -39,7 +31,9 @@ document.onkeydown = e => {
       givenInitialCommand = line.charAt(0)
 
     if (!availableCommands.includes(givenInitialCommand))
-      console.log('Command not found')
+      outputToScreen('Command not found')
+
+    inputBar.value = ''
 
     for (let value of availableCommands) {
       let command = value
