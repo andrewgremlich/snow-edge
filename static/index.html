@@ -1,15 +1,40 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>SnowEdge</title>
 
-    <link rel="stylesheet" href="./css/master.css" type="text/css">
-  </head>
-  <body>
+<head>
+  <meta charset="utf-8">
+  <title>SnowEdge</title>
 
-    <h1>SnowEdge</h1>
+  <link rel="stylesheet" href="./css/master.min.css" type="text/css">
+</head>
 
-    <script src="./js/index-bundled.js" charset="utf-8"></script>
-  </body>
+<body>
+
+  <!-- <h1>snow-edge</h1> -->
+
+  <output name="result">
+
+    </output>
+
+  <div class="textInput">
+    <span>></span>
+    <span class="blinking-caret">_</span>
+    <input type="text" name="typeInput">
+  </div>
+
+  <script type="text/javascript">
+    let inputer = document.querySelector('input[type="text"]'),
+      blinkingCaret = document.querySelector('.blinking-caret')
+
+    inputer.onfocus = () => {
+      blinkingCaret.style.visibility = 'hidden'
+    }
+
+    inputer.onblur = () => {
+      blinkingCaret.style.visibility = 'visible'
+    }
+  </script>
+  <!-- <script src="./js/index-bundled.js" charset="utf-8"></script> -->
+</body>
+
 </html>
