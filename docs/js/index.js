@@ -1,34 +1,41 @@
-const readline = require('readline'),
-  interface = rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-    terminal: false
-  }),
-  emoji = require('node-emoji'),
-  commands = require('./modules/commands.js'),
-  Game = require('./modules/Game.js'),
-  diffRanges = require('./modules/diff.js'),
-  difficulty = process.argv[2] ? process.argv[2] : 'easy'
+import commands from './modules/commands.js'
+import initGame from './modules/initGame.js'
+import outputToScreen from './modules/outputToScreen.js'
+import emoji from './ext/emoji.js'
 
-console.log(emoji.get('snowflake'))
-console.log(`You have started SNOWEDGE on ${difficulty} difficulty.`)
-console.log('Type `guide` to see the instructions')
+const difficulty = 'easy'
 
-let gameSettings = diffRanges[difficulty],
-  game = new Game(gameSettings)
+outputToScreen(emoji['snowflake'])
 
-game.genMap()
-game.genDangers()
+let inputer = document.querySelector('input[type="text"]'),
+  blinkingCaret = document.querySelector('.blinking-caret')
 
-interface.on('line', (line) => {
-  const availableCommands = Object.keys(commands),
-    givenInitialCommand = line.charAt(0)
+outputToScreen(`You have started SNOWEDGE on ${difficulty} difficulty.`)
+outputToScreen('Type `guide` to see the instructions')
 
-  if (!availableCommands.includes(givenInitialCommand))
-    console.log('Command not found')
+initGame('easy')
 
-  for (let value of availableCommands) {
-    let command = value
-    if (command === givenInitialCommand) commands[command](game, line)
+playGame.genMap()
+playGame.genDangers()
+
+document.onkeydown = e => {
+  let enterKey = e.keyCode,
+    activeElement = document.activeElement,
+    inputBar = document.querySelector('input[type="text"]')
+
+  if (enterKey === 13 && activeElement === inputBar) {
+    const line = inputBar.value,
+      availableCommands = Object.keys(commands),
+      givenInitialCommand = line.charAt(0)
+
+    if (!availableCommands.includes(givenInitialCommand))
+      outputToScreen('Command not found')
+
+    inputBar.value = ''
+
+    for (let value of availableCommands) {
+      let command = value
+      if (command === givenInitialCommand) commands[command](line)
+    }
   }
-})
+}

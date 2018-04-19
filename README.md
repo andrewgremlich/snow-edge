@@ -15,7 +15,14 @@ The map is a 2d grid, with (1, 1) starting in the top left corner.
 3. Open up terminal or command prompt and navigate to the location of the SNOWEDGE project.
 
 ## Use Instructions
-To start the game `node index.js easy` OR `node index.js medium` OR `node index.js hard`.
+Use the following for the different levels of difficulty in the game.
+```
+node index.js easy
+node index.js medium
+node index.js hard
+```
+
+Note, if the difficulty level is omitted the game will default to easy.
 
 ### Legend
 
@@ -43,9 +50,11 @@ Available commands for game.
   - Show commands again
 - `l`
   - Show game legend.
+- `d`
+  - Change game difficulty
 
 ## Wanted Features to add
 - Add flare feature to preview areas on map.  More flares for harder and less for easy.
 - add rocks for obstacles in the game.
 - change grid to letters and numbers
-- Convert to internet GUI
+- Convert to web interface format

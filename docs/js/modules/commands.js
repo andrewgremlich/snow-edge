@@ -1,4 +1,7 @@
-const emoji = require('node-emoji')
+import outputToScreen from './outputToScreen.js'
+import emoji from '../ext/emoji.js'
+import initGame from './initGame.js'
+
 const commands = `
 Available commands.
 ***Basic Commands
@@ -13,49 +16,48 @@ Available commands.
 ***Help Commands
 [c]    Show commands again
 [l]    Show Legend
+[d]    Change difficulty
 `
 
-function validateCoordinates(game, command) {
+function validateCoordinates(command) {
   const numCheck = /\d+/g,
     coordinates = command.match(numCheck),
     y = +coordinates[1],
     x = +coordinates[0]
 
   if (!numCheck.test(command) || coordinates.length !== 2) {
-    console.log('Invalid coordinates')
-    console.log('Must be two numbers')
+    outputToScreen('Invalid coordinates')
+    outputToScreen('Must be two numbers')
     return false
   }
-  if (x < 1 || y < 1 || x > game.xLength || y > game.yLength) {
-    console.log(emoji.get('confused'), ' What?')
-    console.log('Must be valid x and y coordinates')
-    console.log(`Must input coordinates (1,1) to (${ game.xLength },${ game.yLength })`)
+  if (x < 1 || y < 1 || x > playGame.xLength || y > playGame.yLength) {
+    outputToScreen(emoji['confused'])
+    outputToScreen('Must be valid x and y coordinates')
+    outputToScreen(`Must input coordinates (1,1) to (${ playGame.xLength },${ playGame.yLength })`)
     return false
   }
 
   return [x, y]
 }
 
-function h(game, command) {
+function h(command) {
 
-  console.log('\x1b[34m')
-  console.log('Hiking mountain...')
-  console.log('\x1b[0m')
+  outputToScreen('Hiking mountain...')
 
-  let coordinates = validateCoordinates(game, command)
-  if (coordinates) game.player.move(+coordinates[0], +coordinates[1])
-  m(game)
+  let coordinates = validateCoordinates(command)
+  if (coordinates) playGame.player.move(+coordinates[0], +coordinates[1])
+  m()
 }
 
-function s(game, command) {
-  console.log('Marking suspected danger on map...')
-  let coordinates = validateCoordinates(game, command)
-  if (coordinates) game.suspectedDangers.push(coordinates)
-  m(game)
+function s(command) {
+  outputToScreen('Marking suspected danger on map...')
+  let coordinates = validateCoordinates(command)
+  if (coordinates) playGame.suspectedDangers.push(coordinates)
+  m()
 }
 
-function l(game) {
-  console.log(`
+function l() {
+  outputToScreen(`
 
 /*****   MAP LEGEND   *****/
 
@@ -70,8 +72,8 @@ function l(game) {
             `)
 }
 
-function g(game) {
-  console.log(`
+function g() {
+  outputToScreen(`
 
 /*********************************************/
       Welcome to SnowEdge!
@@ -93,48 +95,57 @@ ${commands}
                 `)
 }
 
-function m(game) {
+function m() {
 
-  if (game.difficulty === 'ludicrous')
-    return console.log('Map is disabled on ludicrous difficulty.')
+  if (playGame.difficulty === 'ludicrous')
+    return outputToScreen('Map is disabled on ludicrous difficulty.')
 
-  game.genMap()
+  playGame.genMap()
 
   let mapOutString = ''
-  for (let row of game.mapDisplay) {
+  for (let row of playGame.mapDisplay) {
     for (let columnData of row) {
       mapOutString += columnData + '\t'
     }
     mapOutString += '\n'
   }
-  process.stdout.write(mapOutString)
+  outputToScreen(mapOutString)
 }
 
-function c(game) {
-  console.log(`${commands}`)
+function c() {
+  outputToScreen(`${commands}`)
 }
 
-function r(game) {
-  let playerData = game.player,
+function r() {
+  let playerData = playGame.player,
     isAre = playerData.dangersNear === 1 ? 'is' : 'are',
     dangerOrS = playerData.dangersNear === 1 ? 'danger' : 'dangers'
 
-  console.log('\x1b[31m')
-  console.log(`There ${ isAre } ${ playerData.dangersNear } ${ dangerOrS } near by.  Be careful!`)
-  console.log('\x1b[0m')
+  outputToScreen(`There ${ isAre } ${ playerData.dangersNear } ${ dangerOrS } near by.  Be careful!`)
 }
 
-function r(game) {
-  let playerData = game.player,
+function r() {
+  let playerData = playGame.player,
     isAre = playerData.dangersNear === 1 ? 'is' : 'are',
     dangerOrS = playerData.dangersNear === 1 ? 'danger' : 'dangers'
 
-  console.log('\x1b[31m')
-  console.log(`There ${ isAre } ${ playerData.dangersNear } ${ dangerOrS } near by.  Be careful!`)
-  console.log('\x1b[0m')
+  outputToScreen(`There ${ isAre } ${ playerData.dangersNear } ${ dangerOrS } near by.  Be careful!`)
 }
 
-module.exports = {
+function d(line) {
+  const commandIs = line.split(' '),
+    difficultySettings = Object.keys(diff)
+
+  if (commandIs.length !== 2 || !difficultySettings.includes(commandIs[1])) {
+    outputToScreen('Invalid command.')
+    return
+  }
+  initGame(commandIs[1])
+  outputToScreen('Game difficulty changed!')
+}
+
+export default {
+  d,
   r,
   s,
   g,
