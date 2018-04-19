@@ -1,5 +1,6 @@
-const Player = require('./Player.js')
-const emoji = require('node-emoji')
+import Player from './Player.js'
+import outputToScreen from './outputToScreen.js'
+import emoji from '../ext/emoji.js'
 
 function Game(gameSettings) {
   this.mapDisplay = []
@@ -47,17 +48,16 @@ Game.prototype.genMap = function() {
         xVisit = xLoc,
         yVisit = yLoc
 
-      if (xVisit + 1 === dangerCoor[0] && yVisit + 1 === dangerCoor[1]) dangersCloseBy++
-        if (xVisit + 1 === dangerCoor[0] && yVisit - 1 === dangerCoor[1]) dangersCloseBy++
-          if (xVisit + 1 === dangerCoor[0] && yVisit + 0 === dangerCoor[1]) dangersCloseBy++
-            if (xVisit + 0 === dangerCoor[0] && yVisit + 1 === dangerCoor[1]) dangersCloseBy++
-              if (xVisit - 1 === dangerCoor[0] && yVisit + 1 === dangerCoor[1]) dangersCloseBy++
-                if (xVisit - 1 === dangerCoor[0] && yVisit + 0 === dangerCoor[1]) dangersCloseBy++
-                  if (xVisit - 1 === dangerCoor[0] && yVisit - 1 === dangerCoor[1]) dangersCloseBy++
-                    if (xVisit - 0 === dangerCoor[0] && yVisit - 1 === dangerCoor[1]) dangersCloseBy++
+      if (xVisit + 1 === dangerCoor[0] && yVisit + 1 === dangerCoor[1]) dangersCloseBy++;
+      if (xVisit + 1 === dangerCoor[0] && yVisit - 1 === dangerCoor[1]) dangersCloseBy++;
+      if (xVisit + 1 === dangerCoor[0] && yVisit + 0 === dangerCoor[1]) dangersCloseBy++;
+      if (xVisit + 0 === dangerCoor[0] && yVisit + 1 === dangerCoor[1]) dangersCloseBy++;
+      if (xVisit - 1 === dangerCoor[0] && yVisit + 1 === dangerCoor[1]) dangersCloseBy++;
+      if (xVisit - 1 === dangerCoor[0] && yVisit + 0 === dangerCoor[1]) dangersCloseBy++;
+      if (xVisit - 1 === dangerCoor[0] && yVisit - 1 === dangerCoor[1]) dangersCloseBy++;
+      if (xVisit - 0 === dangerCoor[0] && yVisit - 1 === dangerCoor[1]) dangersCloseBy++;
 
-                      if (xVisit === dangerCoor[0] && yVisit === dangerCoor[1])
-                        this.mapDisplay[dangerCoor[0]][dangerCoor[1]] = 'X'
+      if (xVisit === dangerCoor[0] && yVisit === dangerCoor[1]) this.mapDisplay[dangerCoor[0]][dangerCoor[1]] = 'X';
     }
 
     if (dangersCloseBy > 0 && this.mapDisplay[xLoc][yLoc] !== 'X') this.mapDisplay[xLoc][yLoc] = dangersCloseBy
@@ -67,8 +67,8 @@ Game.prototype.genMap = function() {
   this.mapDisplay[this.xGoal][this.yGoal] = '!!'
 
   if (this.player.xPos === this.xGoal && this.player.yPos === this.yGoal) {
-    console.log('You won the game!')
-    console.log(emoji.get('smiley'), ' Yay!')
+    outputToScreen('You won the game!')
+    outputToScreen(emoji['smiley'])
     process.exit()
   }
 }
@@ -92,8 +92,8 @@ Game.prototype.genDangers = function() {
   while (danger <= this.numDangers) {
     let ranX = Math.floor(Math.random() * this.yLength) + 1,
       ranY = Math.floor(Math.random() * this.xLength) + 1,
-      ranDanger = Math.floor(Math.random() * dangers.length)
-    exists = false
+      ranDanger = Math.floor(Math.random() * dangers.length),
+      exists = false
 
     for (let dan of dangersGenerated) {
       if (dan[0] === ranX && dan[0] === ranY)
@@ -112,4 +112,4 @@ Game.prototype.genDangers = function() {
   this.player.inDanger()
 }
 
-module.exports = Game
+export default Game

@@ -14,7 +14,7 @@
 
   <output name="result">
 
-    </output>
+  </output>
 
   <div class="textInput">
     <span>></span>
@@ -22,19 +22,7 @@
     <input type="text" name="typeInput">
   </div>
 
-  <script type="text/javascript">
-    let inputer = document.querySelector('input[type="text"]'),
-      blinkingCaret = document.querySelector('.blinking-caret')
-
-    inputer.onfocus = () => {
-      blinkingCaret.style.visibility = 'hidden'
-    }
-
-    inputer.onblur = () => {
-      blinkingCaret.style.visibility = 'visible'
-    }
-  </script>
-  <!-- <script src="./js/index-bundled.js" charset="utf-8"></script> -->
+  <script src="./js/index-bundled.js" charset="utf-8"></script>
 </body>
 
 </html>

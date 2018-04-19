@@ -1,18 +1,26 @@
-const readline = require('readline'),
-  interface = rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-    terminal: false
-  }),
-  emoji = require('node-emoji'),
-  commands = require('./modules/commands.js'),
-  Game = require('./modules/Game.js'),
-  diffRanges = require('./modules/diff.js'),
-  difficulty = process.argv[2] ? process.argv[2] : 'easy'
+import commands from './modules/commands.js'
+import Game from './modules/Game.js'
+import diffRanges from './modules/diff.js'
+import outputToScreen from './modules/outputToScreen.js'
+import emoji from './ext/emoji.js'
 
-console.log(emoji.get('snowflake'))
-console.log(`You have started SNOWEDGE on ${difficulty} difficulty.`)
-console.log('Type `guide` to see the instructions')
+const difficulty = 'easy'
+
+outputToScreen(emoji['snowflake'])
+
+let inputer = document.querySelector('input[type="text"]'),
+  blinkingCaret = document.querySelector('.blinking-caret')
+
+inputer.onfocus = () => {
+  blinkingCaret.style.visibility = 'hidden'
+}
+
+inputer.onblur = () => {
+  blinkingCaret.style.visibility = 'visible'
+}
+
+outputToScreen(`You have started SNOWEDGE on ${difficulty} difficulty.`)
+outputToScreen('Type `guide` to see the instructions')
 
 let gameSettings = diffRanges[difficulty],
   game = new Game(gameSettings)
@@ -20,15 +28,22 @@ let gameSettings = diffRanges[difficulty],
 game.genMap()
 game.genDangers()
 
-interface.on('line', (line) => {
-  const availableCommands = Object.keys(commands),
-    givenInitialCommand = line.charAt(0)
+document.onkeydown = e => {
+  let enterKey = e.keyCode,
+    activeElement = document.activeElement,
+    inputBar = document.querySelector('input[type="text"]')
 
-  if (!availableCommands.includes(givenInitialCommand))
-    console.log('Command not found')
+  if (enterKey === 13 && activeElement === inputBar) {
+    const line = inputBar.value,
+      availableCommands = Object.keys(commands),
+      givenInitialCommand = line.charAt(0)
 
-  for (let value of availableCommands) {
-    let command = value
-    if (command === givenInitialCommand) commands[command](game, line)
+    if (!availableCommands.includes(givenInitialCommand))
+      console.log('Command not found')
+
+    for (let value of availableCommands) {
+      let command = value
+      if (command === givenInitialCommand) commands[command](game, line)
+    }
   }
-})
+}

@@ -45,4 +45,4 @@ let diffRanges = {
   }
 }
 
-module.exports = diffRanges
+export default diffRanges
