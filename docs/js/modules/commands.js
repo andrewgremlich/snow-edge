@@ -1,7 +1,7 @@
 import outputToScreen from './outputToScreen.js'
 import emoji from '../ext/emoji.js'
 
-//CHANGE DIFFICULTY IN COMMANDS
+//TODO CHANGE DIFFICULTY IN COMMANDS
 //difficulty = process.argv[2] ? process.argv[2] : 'easy'
 
 const commands = `
@@ -43,9 +43,7 @@ function validateCoordinates(game, command) {
 
 function h(game, command) {
 
-  // outputToScreen('\x1b[34m')
   outputToScreen('Hiking mountain...')
-  // outputToScreen('\x1b[0m')
 
   let coordinates = validateCoordinates(game, command)
   if (coordinates) game.player.move(+coordinates[0], +coordinates[1])
@@ -124,9 +122,7 @@ function r(game) {
     isAre = playerData.dangersNear === 1 ? 'is' : 'are',
     dangerOrS = playerData.dangersNear === 1 ? 'danger' : 'dangers'
 
-  // outputToScreen('\x1b[31m')
   outputToScreen(`There ${ isAre } ${ playerData.dangersNear } ${ dangerOrS } near by.  Be careful!`)
-  // outputToScreen('\x1b[0m')
 }
 
 function r(game) {
@@ -134,9 +130,7 @@ function r(game) {
     isAre = playerData.dangersNear === 1 ? 'is' : 'are',
     dangerOrS = playerData.dangersNear === 1 ? 'danger' : 'dangers'
 
-  // outputToScreen('\x1b[31m')
   outputToScreen(`There ${ isAre } ${ playerData.dangersNear } ${ dangerOrS } near by.  Be careful!`)
-  // outputToScreen('\x1b[0m')
 }
 
 export default {

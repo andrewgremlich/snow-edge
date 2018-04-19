@@ -43,28 +43,8 @@ input[type="text"] {
     border: none;
     width: 95%;
     font-size: 20px;
-    position: fixed;
-    left: 36px;
-    bottom: 19px;
 }
 
 input[type="text"]:focus {
   outline: none;
-}
-
-/* blinking caret code! */
-.blinking-caret {
-  z-index: 100;
-  font-weight: 100;
-  font-size: 30px;
-  animation: 1s blink step-end infinite;
-}
-
-@keyframes "blink" {
-  from, to {
-    color: transparent;
-  }
-  50% {
-    color: #72e35f;
-  }
 }

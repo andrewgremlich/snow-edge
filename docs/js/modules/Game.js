@@ -1,6 +1,7 @@
 import Player from './Player.js'
 import outputToScreen from './outputToScreen.js'
 import emoji from '../ext/emoji.js'
+import dangers from '../ext/dangers.js'
 
 function Game(gameSettings) {
   this.mapDisplay = []
@@ -69,22 +70,12 @@ Game.prototype.genMap = function() {
   if (this.player.xPos === this.xGoal && this.player.yPos === this.yGoal) {
     outputToScreen('You won the game!')
     outputToScreen(emoji['smiley'])
-    process.exit()
+    // TODO end game?
+    // process.exit()
   }
 }
 
 Game.prototype.genDangers = function() {
-
-  const dangers = [
-    'You fell off a cliff. Yahoooooooooo!',
-    'A pack of wolves got you.  You are not Mowgli?',
-    'A blizzard trapped you.  Not from Dairy Queen.',
-    'A bear mauled you.  No safety there!',
-    'You saw bigfoot???',
-    'A penguin speared you with its beak.',
-    'A moose licked and left you in its tracks.',
-    'A reindeer ran over you.'
-  ]
 
   let danger = 0,
     dangersGenerated = []
