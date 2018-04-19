@@ -1,5 +1,4 @@
 import outputToScreen from './outputToScreen.js'
-import emoji from '../ext/emoji.js'
 import initGame from './initGame.js'
 
 const commands = `
@@ -31,7 +30,7 @@ function validateCoordinates(command) {
     return false
   }
   if (x < 1 || y < 1 || x > playGame.xLength || y > playGame.yLength) {
-    outputToScreen(emoji['confused'])
+    outputToScreen('😕')
     outputToScreen('Must be valid x and y coordinates')
     outputToScreen(`Must input coordinates (1,1) to (${ playGame.xLength },${ playGame.yLength })`)
     return false
@@ -134,7 +133,7 @@ function r() {
 
 function d(line) {
   const commandIs = line.split(' '),
-    difficultySettings = Object.keys(diff)
+    difficultySettings = ['easy', 'medium', 'hard', 'ludicrous']
 
   if (commandIs.length !== 2 || !difficultySettings.includes(commandIs[1])) {
     outputToScreen('Invalid command.')

@@ -58,3 +58,14 @@ Available commands for game.
 - add rocks for obstacles in the game.
 - change grid to letters and numbers
 - Convert to web interface format
+
+## TODO
+<<<<<<< HEAD
+1. End of game upon victory?
+ * Start over?
+=======
+1. Change difficulty
+2. End of game upon victory?
+ * Start over?
+3. make caret thicker somehow
+>>>>>>> 4fd8532... Workable web interface!

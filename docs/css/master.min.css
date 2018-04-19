@@ -1,5 +1,9 @@
+<<<<<<< HEAD:docs/css/master.min.css
 <<<<<<< HEAD
 *{box-sizing:border-box;margin:0;padding:0}body{background-color:#040404}h1,h2,h3,h4,h5,h6,p,input,span,code,pre{font-family:monospace;color:#72e35f;font-weight:100}body{width:100%;padding-bottom:20px;padding-left:10px}output{margin-bottom:100px}pre{margin-bottom:20px}.textInput{width:100%;height:35px;font-size:20px;padding:10px;position:fixed;bottom:20px;left:10px}input[type="text"]{background-color:#040404;border:0;width:95%;font-size:20px;position:fixed;left:36px;bottom:19px}input[type="text"]:focus{outline:0}.blinking-caret{z-index:100;font-weight:100;font-size:30px;animation:1s blink step-end infinite}@keyframes "blink"{from,to{color:transparent}50%{color:#72e35f}}
 =======
 *{box-sizing:border-box;margin:0;padding:0}body{background-color:#040404}h1,h2,h3,h4,h5,h6,p,input,span,code,pre{font-family:monospace;color:#72e35f;font-weight:100}body{width:100%;padding-bottom:20px;padding-left:10px}output{margin-bottom:100px}pre{margin-bottom:40px}.textInput{width:100%;height:35px;font-size:20px;padding:10px;position:fixed;bottom:20px;left:10px}input[type="text"]{background-color:#040404;border:0;width:95%;font-size:20px}input[type="text"]:focus{outline:0}
 >>>>>>> 2db4c86... Updates and added difficulty change.
+=======
+*{box-sizing:border-box;margin:0;padding:0}body{background-color:#040404}h1,h2,h3,h4,h5,h6,p,input,span,code,pre{font-family:monospace;color:#72e35f;font-weight:100}body{width:100%;padding-bottom:20px;padding-left:10px}output{margin-bottom:100px}pre{margin-bottom:20px}.textInput{width:100%;height:35px;font-size:20px;padding:10px;position:fixed;bottom:20px;left:10px}input[type="text"]{background-color:#040404;border:0;width:95%;font-size:20px}input[type="text"]:focus{outline:0}
+>>>>>>> 4fd8532... Workable web interface!:docs/css/master.min.css
