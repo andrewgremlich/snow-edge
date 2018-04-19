@@ -4,12 +4,27 @@
   "description": "Hike up Mount Denali on a grand text-based adventure!",
   "main": "index.js",
   "scripts": {
-    "dev:eslint": "./node_modules/.bin/eslint index.js;  ./node_modules/.bin/eslint modules/"
+    "lint": "./node_modules/.bin/eslint ./static/js/**/*",
+    "roll": "NODE_ENV=dev rollup -c",
+    "watch": "rollup -i ./static/js/index.js -f iife -o ./static/js/index-bundled.js -m -w ./static/js/index.js",
+    "uglify": "uglifycss ./static/css/master.css > ./static/css/master.min.css",
+    "prod": "NODE_ENV=production rollup -c",
+    "prod:make": "npm run prod && npm run uglify"
   },
   "author": "Andrew Gremlich",
   "license": "MIT",
   "devDependencies": {
-    "eslint": "^4.18.0"
+    "babel-core": "^6.26.0",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-es2015": "^6.24.1",
+    "eslint": "^4.18.0",
+    "nodemon": "^1.17.3",
+    "rollup": "^0.58.1",
+    "rollup-plugin-babel": "^3.0.3",
+    "rollup-plugin-eslint": "^4.0.0",
+    "rollup-plugin-uglify": "^3.0.0",
+    "rollup-watch": "^4.3.1",
+    "uglifycss": "0.0.29"
   },
   "dependencies": {
     "node-emoji": "^1.8.1"
