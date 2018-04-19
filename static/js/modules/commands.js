@@ -1,4 +1,9 @@
-const emoji = require('node-emoji')
+import outputToScreen from './outputToScreen.js'
+import emoji from '../ext/emoji.js'
+
+//CHANGE DIFFICULTY IN COMMANDS
+//difficulty = process.argv[2] ? process.argv[2] : 'easy'
+
 const commands = `
 Available commands.
 ***Basic Commands
@@ -22,14 +27,14 @@ function validateCoordinates(game, command) {
     x = +coordinates[0]
 
   if (!numCheck.test(command) || coordinates.length !== 2) {
-    console.log('Invalid coordinates')
-    console.log('Must be two numbers')
+    outputToScreen('Invalid coordinates')
+    outputToScreen('Must be two numbers')
     return false
   }
   if (x < 1 || y < 1 || x > game.xLength || y > game.yLength) {
-    console.log(emoji.get('confused'), ' What?')
-    console.log('Must be valid x and y coordinates')
-    console.log(`Must input coordinates (1,1) to (${ game.xLength },${ game.yLength })`)
+    outputToScreen(emoji['confused'])
+    outputToScreen('Must be valid x and y coordinates')
+    outputToScreen(`Must input coordinates (1,1) to (${ game.xLength },${ game.yLength })`)
     return false
   }
 
@@ -38,9 +43,9 @@ function validateCoordinates(game, command) {
 
 function h(game, command) {
 
-  console.log('\x1b[34m')
-  console.log('Hiking mountain...')
-  console.log('\x1b[0m')
+  // outputToScreen('\x1b[34m')
+  outputToScreen('Hiking mountain...')
+  // outputToScreen('\x1b[0m')
 
   let coordinates = validateCoordinates(game, command)
   if (coordinates) game.player.move(+coordinates[0], +coordinates[1])
@@ -48,14 +53,14 @@ function h(game, command) {
 }
 
 function s(game, command) {
-  console.log('Marking suspected danger on map...')
+  outputToScreen('Marking suspected danger on map...')
   let coordinates = validateCoordinates(game, command)
   if (coordinates) game.suspectedDangers.push(coordinates)
   m(game)
 }
 
 function l(game) {
-  console.log(`
+  outputToScreen(`
 
 /*****   MAP LEGEND   *****/
 
@@ -71,7 +76,7 @@ function l(game) {
 }
 
 function g(game) {
-  console.log(`
+  outputToScreen(`
 
 /*********************************************/
       Welcome to SnowEdge!
@@ -96,7 +101,7 @@ ${commands}
 function m(game) {
 
   if (game.difficulty === 'ludicrous')
-    return console.log('Map is disabled on ludicrous difficulty.')
+    return outputToScreen('Map is disabled on ludicrous difficulty.')
 
   game.genMap()
 
@@ -107,11 +112,11 @@ function m(game) {
     }
     mapOutString += '\n'
   }
-  process.stdout.write(mapOutString)
+  outputToScreen(mapOutString)
 }
 
 function c(game) {
-  console.log(`${commands}`)
+  outputToScreen(`${commands}`)
 }
 
 function r(game) {
@@ -119,9 +124,9 @@ function r(game) {
     isAre = playerData.dangersNear === 1 ? 'is' : 'are',
     dangerOrS = playerData.dangersNear === 1 ? 'danger' : 'dangers'
 
-  console.log('\x1b[31m')
-  console.log(`There ${ isAre } ${ playerData.dangersNear } ${ dangerOrS } near by.  Be careful!`)
-  console.log('\x1b[0m')
+  // outputToScreen('\x1b[31m')
+  outputToScreen(`There ${ isAre } ${ playerData.dangersNear } ${ dangerOrS } near by.  Be careful!`)
+  // outputToScreen('\x1b[0m')
 }
 
 function r(game) {
@@ -129,12 +134,12 @@ function r(game) {
     isAre = playerData.dangersNear === 1 ? 'is' : 'are',
     dangerOrS = playerData.dangersNear === 1 ? 'danger' : 'dangers'
 
-  console.log('\x1b[31m')
-  console.log(`There ${ isAre } ${ playerData.dangersNear } ${ dangerOrS } near by.  Be careful!`)
-  console.log('\x1b[0m')
+  // outputToScreen('\x1b[31m')
+  outputToScreen(`There ${ isAre } ${ playerData.dangersNear } ${ dangerOrS } near by.  Be careful!`)
+  // outputToScreen('\x1b[0m')
 }
 
-module.exports = {
+export default {
   r,
   s,
   g,
