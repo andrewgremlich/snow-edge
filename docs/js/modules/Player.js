@@ -1,4 +1,3 @@
-import emoji from '../ext/emoji.js'
 import outputToScreen from './outputToScreen.js'
 import initGame from './initGame.js'
 
@@ -28,13 +27,13 @@ Player.prototype.move = function(y, x) {
     yAbs = Math.abs(newYpos - this.yPos)
 
   if (xAbs > 1 || yAbs > 1) {
-    outputToScreen(`${emoji['hand']} Can not move farther than one square`)
+    outputToScreen(`✋ Can not move farther than one square`)
   } else if (xAbs >= 1 || yAbs >= 1) {
     this.xPos = newXpos
     this.yPos = newYpos
     this.updateVisitedLocations()
   } else {
-    outputToScreen(`${emoji['confused']} You have inputed invalid coordinates`)
+    outputToScreen(`😕 You have inputed invalid coordinates`)
   }
   this.inDanger()
 }
@@ -52,11 +51,11 @@ Player.prototype.inDanger = function() {
         this.xPos = this.xGameStart
         this.yPos = this.yGameStart
         outputToScreen(`${danger.danger} You dead bro!`)
-        outputToScreen(`${ emoji['hammer'] } ${ emoji['heart'] } `)
+        outputToScreen(`💔`)
         outputToScreen(`Lost one life. Restarting at ${ this.xGameStart + 1 }, ${ this.yGameStart + 1 }`)
         outputToScreen(`You have ${ this.lives } ${ this.lives === 1 ? 'life' : 'lives' } left.`)
         for (let i = 0; i < this.lives; i++) {
-          outputToScreen(emoji['heart'])
+          outputToScreen('💜')
         }
         this.gameObj.genMap()
       }

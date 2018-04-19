@@ -5,7 +5,7 @@ import emoji from './ext/emoji.js'
 
 const difficulty = 'easy'
 
-outputToScreen(emoji['snowflake'])
+outputToScreen(`❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️`)
 
 let inputer = document.querySelector('input[type="text"]'),
   blinkingCaret = document.querySelector('.blinking-caret')
@@ -14,6 +14,8 @@ outputToScreen(`You have started SNOWEDGE on ${difficulty} difficulty.`)
 outputToScreen('Type `guide` to see the instructions')
 
 initGame('easy')
+
+window.playGame = new Game(gameSettings)
 
 playGame.genMap()
 playGame.genDangers()

@@ -1,6 +1,5 @@
 import Player from './Player.js'
 import outputToScreen from './outputToScreen.js'
-import emoji from '../ext/emoji.js'
 import dangers from '../ext/dangers.js'
 import initGame from './initGame.js'
 
@@ -72,7 +71,7 @@ Game.prototype.genMap = function() {
 
   if (this.player.xPos === this.xGoal && this.player.yPos === this.yGoal) {
     outputToScreen('You won the game!')
-    outputToScreen(emoji['smiley'])
+    outputToScreen('😄')
     outputToScreen(`Will restart on ${ window.playGame.difficulty } difficulty`)
 
     initGame(window.playGame.difficulty)
