@@ -17,7 +17,6 @@ lib-cov
 
 *.map
 
-*-bundled*
 
 # Coverage directory used by tools like istanbul
 coverage
