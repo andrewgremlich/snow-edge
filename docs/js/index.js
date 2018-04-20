@@ -1,6 +1,5 @@
 import commands from './modules/commands.js'
-import Game from './modules/Game.js'
-import diffRanges from './modules/diff.js'
+import initGame from './modules/initGame.js'
 import outputToScreen from './modules/outputToScreen.js'
 import emoji from './ext/emoji.js'
 
@@ -14,11 +13,10 @@ let inputer = document.querySelector('input[type="text"]'),
 outputToScreen(`You have started SNOWEDGE on ${difficulty} difficulty.`)
 outputToScreen('Type `guide` to see the instructions')
 
-let gameSettings = diffRanges[difficulty],
-  game = new Game(gameSettings)
+initGame('easy')
 
-game.genMap()
-game.genDangers()
+playGame.genMap()
+playGame.genDangers()
 
 document.onkeydown = e => {
   let enterKey = e.keyCode,
@@ -37,7 +35,7 @@ document.onkeydown = e => {
 
     for (let value of availableCommands) {
       let command = value
-      if (command === givenInitialCommand) commands[command](game, line)
+      if (command === givenInitialCommand) commands[command](line)
     }
   }
 }

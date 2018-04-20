@@ -50,15 +50,11 @@ Available commands for game.
   - Show commands again
 - `l`
   - Show game legend.
+- `d`
+  - Change game difficulty
 
 ## Wanted Features to add
 - Add flare feature to preview areas on map.  More flares for harder and less for easy.
 - add rocks for obstacles in the game.
 - change grid to letters and numbers
 - Convert to web interface format
-
-## TODO
-1. Change difficulty
-2. End of game upon victory?
- * Start over?
-3. make caret thicker somehow

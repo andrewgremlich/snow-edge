@@ -4,10 +4,10 @@
   "description": "Hike up Mount Denali on a grand text-based adventure!",
   "main": "index.js",
   "scripts": {
-    "lint": "./node_modules/.bin/eslint ./static/js/**/*",
-    "roll": "NODE_ENV=dev rollup -c",
-    "watch": "rollup -i ./static/js/index.js -f iife -o ./static/js/index-bundled.js -m -w ./static/js/index.js",
-    "uglify": "uglifycss ./static/css/master.css > ./static/css/master.min.css",
+    "lint": "./node_modules/.bin/eslint ./docs/js/**/*",
+    "roll": "rollup -c",
+    "watch": "rollup -i ./docs/js/index.js -f iife -o ./docs/js/index-bundled.js -m -w ./docs/js/index.js",
+    "uglify": "uglifycss ./docs/css/master.css > ./docs/css/master.min.css",
     "prod": "NODE_ENV=production rollup -c",
     "prod:make": "npm run prod && npm run uglify"
   },
