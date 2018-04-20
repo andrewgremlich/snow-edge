@@ -5,6 +5,7 @@ import dangers from '../ext/dangers.js'
 
 function Game(gameSettings) {
   this.mapDisplay = []
+  //TODO this.player probably needs a .apply call...
   this.player = new Player({
     yPlayerStart: gameSettings.yPlayerStart,
     xPlayerStart: gameSettings.xPlayerStart,
@@ -21,6 +22,7 @@ function Game(gameSettings) {
   this.numDangers = gameSettings.numDangers
 }
 
+//TODO cleanup function
 Game.prototype.genMap = function() {
   let visLoc = this.player.visitedLocations
   this.mapDisplay = []
