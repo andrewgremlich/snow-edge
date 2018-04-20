@@ -1,5 +1,5 @@
 # SNOWEDGE
-Text based Minesweeper-like maze game.
+Text based Minesweeper-like maze game. Play at this [website](https://andrewgremlich.github.io/snow-edge/)!
 
 ## Theme
 You are a daring explorer.  You decided to scale Mount Denali in a snow storm!  You must find your way to the top, but be careful!  There are dangers along the way.  You will recieve cues on your map when you are near danger, but you must make the right choice where to go!
@@ -10,9 +10,6 @@ The map is a 2d grid, with (1, 1) starting in the top left corner.
 
 ## Download
 
-1. Install [Nodejs from website](https://nodejs.org/en/ "Nodejs Website")
-2. Git clone the project `https://github.com/andrewgremlich/snow-edge.git`
-3. Open up terminal or command prompt and navigate to the location of the SNOWEDGE project.
 
 ## Use Instructions
 Use the following for the different levels of difficulty in the game.
@@ -60,12 +57,5 @@ Available commands for game.
 - Convert to web interface format
 
 ## TODO
-<<<<<<< HEAD
 1. End of game upon victory?
  * Start over?
-=======
-1. Change difficulty
-2. End of game upon victory?
- * Start over?
-3. make caret thicker somehow
->>>>>>> 4fd8532... Workable web interface!
