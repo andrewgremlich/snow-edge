@@ -2,9 +2,11 @@ import Player from './Player.js'
 import outputToScreen from './outputToScreen.js'
 import emoji from '../ext/emoji.js'
 import dangers from '../ext/dangers.js'
+import initGame from './initGame.js'
 
 function Game(gameSettings) {
   this.mapDisplay = []
+  //TODO this.player probably needs a .apply call...
   this.player = new Player({
     yPlayerStart: gameSettings.yPlayerStart,
     xPlayerStart: gameSettings.xPlayerStart,
@@ -21,6 +23,7 @@ function Game(gameSettings) {
   this.numDangers = gameSettings.numDangers
 }
 
+//TODO cleanup function
 Game.prototype.genMap = function() {
   let visLoc = this.player.visitedLocations
   this.mapDisplay = []
@@ -70,8 +73,9 @@ Game.prototype.genMap = function() {
   if (this.player.xPos === this.xGoal && this.player.yPos === this.yGoal) {
     outputToScreen('You won the game!')
     outputToScreen(emoji['smiley'])
-    // TODO end game?
-    // process.exit()
+    outputToScreen(`Will restart on ${ window.playGame.difficulty } difficulty`)
+
+    initGame(window.playGame.difficulty)
   }
 }
 
