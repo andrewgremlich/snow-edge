@@ -1,5 +1,6 @@
 import emoji from '../ext/emoji.js'
 import outputToScreen from './outputToScreen.js'
+import initGame from './initGame.js'
 
 function Player(playerData, gameObj) {
   this.lives = playerData.lives
@@ -86,8 +87,9 @@ Player.prototype.die = function(danger) {
   this.dead = true
   if (this.dead) {
     outputToScreen(`${danger} You dead bro!`)
-    // command for game over? to reset?
-    // TODO process.exit()
+    outputToScreen(`Will restart on ${ window.playGame.difficulty } difficulty`)
+
+    initGame(window.playGame.difficulty)
   }
 }
 

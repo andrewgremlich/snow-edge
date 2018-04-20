@@ -1,7 +1,6 @@
 import outputToScreen from './outputToScreen.js'
 import emoji from '../ext/emoji.js'
-import diff from '../ext/diff.js'
-import Game from './Game.js'
+import initGame from './initGame.js'
 
 const commands = `
 Available commands.
@@ -134,9 +133,6 @@ function r() {
 }
 
 function d(line) {
-  console.log(line)
-  console.log(diff)
-
   const commandIs = line.split(' '),
     difficultySettings = Object.keys(diff)
 
@@ -144,12 +140,7 @@ function d(line) {
     outputToScreen('Invalid command.')
     return
   }
-
-  let gameSettings = diff[commandIs[1]],
-    game = new Game(gameSettings)
-
-  window.playGame = new Game(gameSettings)
-
+  initGame(commandIs[1])
   outputToScreen('Game difficulty changed!')
 }
 
