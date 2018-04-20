@@ -133,6 +133,12 @@ function r() {
 }
 
 function d(line) {
+<<<<<<< HEAD
+=======
+  console.log(line)
+  console.log(diff)
+
+>>>>>>> f8a8ba9980927beb57e5be3835887d709e6d78e7
   const commandIs = line.split(' '),
     difficultySettings = Object.keys(diff)
 
@@ -140,7 +146,16 @@ function d(line) {
     outputToScreen('Invalid command.')
     return
   }
+<<<<<<< HEAD
   initGame(commandIs[1])
+=======
+
+  let gameSettings = diff[commandIs[1]],
+    game = new Game(gameSettings)
+
+  window.playGame = new Game(gameSettings)
+
+>>>>>>> f8a8ba9980927beb57e5be3835887d709e6d78e7
   outputToScreen('Game difficulty changed!')
 }
 
