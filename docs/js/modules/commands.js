@@ -1,8 +1,7 @@
 import outputToScreen from './outputToScreen.js'
 import emoji from '../ext/emoji.js'
-
-//TODO CHANGE DIFFICULTY IN COMMANDS
-//difficulty = process.argv[2] ? process.argv[2] : 'easy'
+import diff from '../ext/diff.js'
+import Game from './Game.js'
 
 const commands = `
 Available commands.
@@ -18,9 +17,10 @@ Available commands.
 ***Help Commands
 [c]    Show commands again
 [l]    Show Legend
+[d]    Change difficulty
 `
 
-function validateCoordinates(game, command) {
+function validateCoordinates(command) {
   const numCheck = /\d+/g,
     coordinates = command.match(numCheck),
     y = +coordinates[1],
@@ -31,33 +31,33 @@ function validateCoordinates(game, command) {
     outputToScreen('Must be two numbers')
     return false
   }
-  if (x < 1 || y < 1 || x > game.xLength || y > game.yLength) {
+  if (x < 1 || y < 1 || x > playGame.xLength || y > playGame.yLength) {
     outputToScreen(emoji['confused'])
     outputToScreen('Must be valid x and y coordinates')
-    outputToScreen(`Must input coordinates (1,1) to (${ game.xLength },${ game.yLength })`)
+    outputToScreen(`Must input coordinates (1,1) to (${ playGame.xLength },${ playGame.yLength })`)
     return false
   }
 
   return [x, y]
 }
 
-function h(game, command) {
+function h(command) {
 
   outputToScreen('Hiking mountain...')
 
-  let coordinates = validateCoordinates(game, command)
-  if (coordinates) game.player.move(+coordinates[0], +coordinates[1])
-  m(game)
+  let coordinates = validateCoordinates(command)
+  if (coordinates) playGame.player.move(+coordinates[0], +coordinates[1])
+  m()
 }
 
-function s(game, command) {
+function s(command) {
   outputToScreen('Marking suspected danger on map...')
-  let coordinates = validateCoordinates(game, command)
-  if (coordinates) game.suspectedDangers.push(coordinates)
-  m(game)
+  let coordinates = validateCoordinates(command)
+  if (coordinates) playGame.suspectedDangers.push(coordinates)
+  m()
 }
 
-function l(game) {
+function l() {
   outputToScreen(`
 
 /*****   MAP LEGEND   *****/
@@ -73,7 +73,7 @@ function l(game) {
             `)
 }
 
-function g(game) {
+function g() {
   outputToScreen(`
 
 /*********************************************/
@@ -96,15 +96,15 @@ ${commands}
                 `)
 }
 
-function m(game) {
+function m() {
 
-  if (game.difficulty === 'ludicrous')
+  if (playGame.difficulty === 'ludicrous')
     return outputToScreen('Map is disabled on ludicrous difficulty.')
 
-  game.genMap()
+  playGame.genMap()
 
   let mapOutString = ''
-  for (let row of game.mapDisplay) {
+  for (let row of playGame.mapDisplay) {
     for (let columnData of row) {
       mapOutString += columnData + '\t'
     }
@@ -113,27 +113,48 @@ function m(game) {
   outputToScreen(mapOutString)
 }
 
-function c(game) {
+function c() {
   outputToScreen(`${commands}`)
 }
 
-function r(game) {
-  let playerData = game.player,
+function r() {
+  let playerData = playGame.player,
     isAre = playerData.dangersNear === 1 ? 'is' : 'are',
     dangerOrS = playerData.dangersNear === 1 ? 'danger' : 'dangers'
 
   outputToScreen(`There ${ isAre } ${ playerData.dangersNear } ${ dangerOrS } near by.  Be careful!`)
 }
 
-function r(game) {
-  let playerData = game.player,
+function r() {
+  let playerData = playGame.player,
     isAre = playerData.dangersNear === 1 ? 'is' : 'are',
     dangerOrS = playerData.dangersNear === 1 ? 'danger' : 'dangers'
 
   outputToScreen(`There ${ isAre } ${ playerData.dangersNear } ${ dangerOrS } near by.  Be careful!`)
+}
+
+function d(line) {
+  console.log(line)
+  console.log(diff)
+
+  const commandIs = line.split(' '),
+    difficultySettings = Object.keys(diff)
+
+  if (commandIs.length !== 2 || !difficultySettings.includes(commandIs[1])) {
+    outputToScreen('Invalid command.')
+    return
+  }
+
+  let gameSettings = diff[commandIs[1]],
+    game = new Game(gameSettings)
+
+  window.playGame = new Game(gameSettings)
+
+  outputToScreen('Game difficulty changed!')
 }
 
 export default {
+  d,
   r,
   s,
   g,
