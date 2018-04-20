@@ -5,7 +5,7 @@ import emoji from './ext/emoji.js'
 
 const difficulty = 'easy'
 
-outputToScreen(emoji['snowflake'])
+outputToScreen(`❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️`)
 
 let inputer = document.querySelector('input[type="text"]'),
   blinkingCaret = document.querySelector('.blinking-caret')
