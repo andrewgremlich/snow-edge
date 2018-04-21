@@ -32,10 +32,10 @@ Player.prototype.move = function(y, x) {
     this.xPos = newXpos
     this.yPos = newYpos
     this.updateVisitedLocations()
+    this.inDanger()
   } else {
     outputToScreen(`😕 You have inputed invalid coordinates`)
   }
-  this.inDanger()
 }
 
 Player.prototype.inDanger = function() {
