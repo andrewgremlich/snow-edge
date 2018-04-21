@@ -48,29 +48,3 @@ input[type="text"] {
 input[type="text"]:focus {
   outline: none;
 }
-<<<<<<< HEAD:docs/css/master.css
-
-<<<<<<< HEAD
-/* blinking caret code! */
-.blinking-caret {
-  z-index: 100;
-  font-weight: 100;
-  font-size: 30px;
-  animation: 1s blink step-end infinite;
-}
-
-@keyframes "blink" {
-  from, to {
-    color: transparent;
-  }
-  50% {
-    color: #72e35f;
-  }
-=======
-
-input[type="text"]:focus {
-  outline: none;
->>>>>>> 2db4c86... Updates and added difficulty change.
-}
-=======
->>>>>>> 4fd8532... Workable web interface!:docs/css/master.css
