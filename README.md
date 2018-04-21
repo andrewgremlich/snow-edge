@@ -8,26 +8,13 @@ Be careful on this great adventurous endeavor!
 
 The map is a 2d grid, with (1, 1) starting in the top left corner.
 
-## Download
-
-
-## Use Instructions
-Use the following for the different levels of difficulty in the game.
-```
-node index.js easy
-node index.js medium
-node index.js hard
-```
-
-Note, if the difficulty level is omitted the game will default to easy.
-
 ### Legend
 
-'&'     Player Icon.
-'.'     Unknown location.
-'*'     Visited location with no danger.
-'X'     Visited location with known danger.
-'?'     Location with suspected danger.
+* '&'     Player Icon.
+* '.'     Unknown location.
+* '*'     Visited location with no danger
+* 'X'     Visited location with known danger
+* '?'     Location with suspected danger
 
 Nearby dangers appear as a number
   * i.e. '1' or '2'.
@@ -36,15 +23,15 @@ Nearby dangers appear as a number
 
 #### Basic Commands
 
-[m]    Show Map
-[h]    Hike Mountain (example command 'h 2 2')
-[s]    Mark suspected danger
-[r]    Remind nearby dangers
-[p]    Show current position
+* [m]    Show Map
+* [h]    Hike Mountain (example command 'h 2 2')
+* [s]    Mark suspected danger
+* [r]    Remind nearby dangers
+* [p]    Show current position
 
 #### Help Commands
 
-[g]    Show guide
-[c]    Show commands again
-[l]    Show Legend
-[d]    Change difficulty
+* [g]    Show guide
+* [c]    Show commands again
+* [l]    Show Legend
+* [d]    Change difficulty
