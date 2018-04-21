@@ -29,7 +29,7 @@ Game.prototype.genMap = function() {
   for (let y = 0; y < this.yLength; y++) {
     this.mapDisplay.push([])
     for (let x = 0; x < this.xLength; x++) {
-      this.mapDisplay[y].push('N')
+      this.mapDisplay[y].push('.')
     }
   }
 
@@ -59,18 +59,20 @@ Game.prototype.genMap = function() {
       if (xVisit - 1 === dangerCoor[0] && yVisit - 1 === dangerCoor[1]) dangersCloseBy++;
       if (xVisit - 0 === dangerCoor[0] && yVisit - 1 === dangerCoor[1]) dangersCloseBy++;
 
-      if (xVisit === dangerCoor[0] && yVisit === dangerCoor[1]) this.mapDisplay[dangerCoor[0]][dangerCoor[1]] = 'X';
+      if (xVisit === dangerCoor[0] && yVisit === dangerCoor[1])
+        this.mapDisplay[dangerCoor[0]][dangerCoor[1]] = 'X';
     }
 
-    if (dangersCloseBy > 0 && this.mapDisplay[xLoc][yLoc] !== 'X') this.mapDisplay[xLoc][yLoc] = dangersCloseBy
+    if (dangersCloseBy > 0 && this.mapDisplay[xLoc][yLoc] !== 'X')
+      this.mapDisplay[xLoc][yLoc] = dangersCloseBy;
   }
 
   this.mapDisplay[this.player.xPos][this.player.yPos] = '&'
   this.mapDisplay[this.xGoal][this.yGoal] = '!!'
 
   if (this.player.xPos === this.xGoal && this.player.yPos === this.yGoal) {
-    outputToScreen('You won the game!')
-    outputToScreen('😄')
+    outputToScreen('🔥🔥🔥🔥🔥 You won the game!  🔥🔥🔥🔥🔥🔥')
+    outputToScreen('😄😄😄😄😄😄😄😄😄😄')
     outputToScreen(`Will restart on ${ window.playGame.difficulty } difficulty`)
 
     initGame(window.playGame.difficulty)

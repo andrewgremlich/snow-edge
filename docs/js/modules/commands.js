@@ -114,7 +114,7 @@ export default {
   /*****   MAP LEGEND   *****/
 
   * '&'     Player Icon
-  * 'N'     Unknown location
+  * '.'     Unknown location
   * '*'     Visited location with no danger.
   * 'X'     Visited location with known danger.
   * '?'     Location with suspected danger.
@@ -139,9 +139,7 @@ export default {
       mapOutString += '\n'
     }
 
-    this.l()
     outputToScreen(mapOutString)
-    this.p()
     this.r()
   }
 

@@ -6,6 +6,9 @@ function initGame(difficulty) {
     game = new Game(gameSettings)
 
   window.playGame = game
+
+  playGame.genMap()
+  playGame.genDangers()
 }
 
 export default initGame

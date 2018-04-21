@@ -24,7 +24,7 @@ Note, if the difficulty level is omitted the game will default to easy.
 ### Legend
 
 '&'     Player Icon.
-'N'     Unknown location.
+'.'     Unknown location.
 '*'     Visited location with no danger.
 'X'     Visited location with known danger.
 '?'     Location with suspected danger.

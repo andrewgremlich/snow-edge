@@ -8,9 +8,6 @@ outputToScreen('Type `g` to see the instructions')
 
 InitGame('easy')
 
-playGame.genMap()
-playGame.genDangers()
-
 document.onkeydown = e => {
   let enterKey = e.keyCode,
     activeElement = document.activeElement,

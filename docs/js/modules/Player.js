@@ -44,25 +44,19 @@ Player.prototype.inDanger = function() {
 
   for (let danger of this.gameObj.dangers) {
     if (danger.dangerCoor[0] === this.xPos && danger.dangerCoor[1] === this.yPos) {
-      if (this.lives === 0) {
+      if (this.lives === 1) {
         this.die(danger.danger)
       } else {
         this.lives--
-        this.xPos = this.xGameStart
+          this.xPos = this.xGameStart
         this.yPos = this.yGameStart
-        outputToScreen(`${danger.danger} You dead bro!`)
-        outputToScreen(`💔`)
+
+        outputToScreen('💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀')
+        outputToScreen(`${danger.danger} You dead bro! 💔`)
         outputToScreen(`Lost one life. Restarting at ${ this.xGameStart + 1 }, ${ this.yGameStart + 1 }`)
         outputToScreen(`You have ${ this.lives } ${ this.lives === 1 ? 'life' : 'lives' } left.`)
-
-        let heartsLeft = ''
-
-        for (let i = 0; i < this.lives; i++) {
-          heartsLeft += '💜'
-        }
-
-        outputToScreen(heartsLeft)
-        this.gameObj.genMap()
+        this.heartsLeft()
+        outputToScreen('💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀')
       }
     }
 
@@ -78,13 +72,16 @@ Player.prototype.inDanger = function() {
     if (xDangerCoor + 1 === this.xPos && yDangerCoor - 1 === this.yPos) this.dangersNear++;
     if (xDangerCoor + 1 === this.xPos && yDangerCoor - 0 === this.yPos) this.dangersNear++;
   }
+}
 
-  if (this.dangersNear !== 0) {
-    let isAre = this.dangersNear === 1 ? 'is' : 'are',
-      dangersOrS = this.dangersNear === 1 ? 'danger' : 'dangers'
+Player.prototype.heartsLeft = function() {
+  let heartsLeft = ''
 
-    outputToScreen(`There ${ isAre } ${ this.dangersNear } ${ dangersOrS } near by.  Be careful!`)
+  for (let i = 0; i < this.lives; i++) {
+    heartsLeft += '💜'
   }
+  outputToScreen(heartsLeft)
+  this.gameObj.genMap()
 }
 
 Player.prototype.die = function(danger) {
