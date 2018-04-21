@@ -32,10 +32,10 @@ Player.prototype.move = function(y, x) {
     this.xPos = newXpos
     this.yPos = newYpos
     this.updateVisitedLocations()
+    this.inDanger()
   } else {
     outputToScreen(`😕 You have inputed invalid coordinates`)
   }
-  this.inDanger()
 }
 
 Player.prototype.inDanger = function() {
@@ -54,9 +54,14 @@ Player.prototype.inDanger = function() {
         outputToScreen(`💔`)
         outputToScreen(`Lost one life. Restarting at ${ this.xGameStart + 1 }, ${ this.yGameStart + 1 }`)
         outputToScreen(`You have ${ this.lives } ${ this.lives === 1 ? 'life' : 'lives' } left.`)
+
+        let heartsLeft = ''
+
         for (let i = 0; i < this.lives; i++) {
-          outputToScreen('💜')
+          heartsLeft += '💜'
         }
+
+        outputToScreen(heartsLeft)
         this.gameObj.genMap()
       }
     }

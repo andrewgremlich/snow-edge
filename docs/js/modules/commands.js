@@ -102,12 +102,9 @@ export default {
   },
 
   h(command) {
-
     outputToScreen('Hiking mountain...')
-
     let coordinates = validateCoordinates(command)
     if (coordinates) playGame.player.move(+coordinates[0], +coordinates[1])
-
     this.m()
   },
 
@@ -145,6 +142,7 @@ export default {
     this.l()
     outputToScreen(mapOutString)
     this.p()
+    this.r()
   }
 
 }
