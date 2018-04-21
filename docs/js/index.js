@@ -1,21 +1,12 @@
 import commands from './modules/commands.js'
-import initGame from './modules/initGame.js'
+import InitGame from './modules/InitGame.js'
 import outputToScreen from './modules/outputToScreen.js'
-import emoji from './ext/emoji.js'
-
-const difficulty = 'easy'
 
 outputToScreen(`❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️`)
+outputToScreen(`You have started SNOWEDGE on easy difficulty.`)
+outputToScreen('Type `g` to see the instructions')
 
-let inputer = document.querySelector('input[type="text"]'),
-  blinkingCaret = document.querySelector('.blinking-caret')
-
-outputToScreen(`You have started SNOWEDGE on ${difficulty} difficulty.`)
-outputToScreen('Type `guide` to see the instructions')
-
-initGame('easy')
-
-window.playGame = new Game(gameSettings)
+InitGame('easy')
 
 playGame.genMap()
 playGame.genDangers()

@@ -1,5 +1,5 @@
 import outputToScreen from './outputToScreen.js'
-import initGame from './initGame.js'
+import initGame from './InitGame.js'
 
 function Player(playerData, gameObj) {
   this.lives = playerData.lives

@@ -1,11 +1,10 @@
 import Player from './Player.js'
 import outputToScreen from './outputToScreen.js'
 import dangers from '../ext/dangers.js'
-import initGame from './initGame.js'
+import initGame from './InitGame.js'
 
 function Game(gameSettings) {
   this.mapDisplay = []
-  //TODO this.player probably needs a .apply call...
   this.player = new Player({
     yPlayerStart: gameSettings.yPlayerStart,
     xPlayerStart: gameSettings.xPlayerStart,

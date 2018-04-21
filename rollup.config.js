@@ -6,7 +6,7 @@ export default {
   input: './docs/js/index.js',
   output: {
     file: './docs/js/index-bundled.js',
-    sourceMap: process.env.NODE_ENV === 'production' ? false : 'inline',
+    sourcemap: process.env.NODE_ENV === 'production' ? false : 'inline',
     format: 'iife'
   },
   plugins: [
