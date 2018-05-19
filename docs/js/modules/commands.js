@@ -42,7 +42,6 @@ export default {
 
   p() {
     const playerData = window.playGame.player
-
     outputToScreen(`Your current position is (${ playerData.yPos + 1 },${ playerData.xPos + 1 })`)
   },
 

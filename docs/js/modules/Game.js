@@ -21,11 +21,8 @@ function Game(gameSettings) {
   this.numDangers = gameSettings.numDangers
 }
 
-//TODO cleanup function
-Game.prototype.genMap = function() {
-  let visLoc = this.player.visitedLocations
-  this.mapDisplay = []
-
+Game.prototype.generateUnvisitedAreas = function() {
+  //Generate unvisited areas
   for (let y = 0; y < this.yLength; y++) {
     this.mapDisplay.push([])
     for (let x = 0; x < this.xLength; x++) {
@@ -36,7 +33,9 @@ Game.prototype.genMap = function() {
   for (let suspected of this.suspectedDangers) {
     this.mapDisplay[suspected[1] - 1][suspected[0] - 1] = '?'
   }
+}
 
+Game.prototype.generateVisitedAreas = function(visLoc) {
   for (let z of visLoc) {
     let xLoc = z[0],
       yLoc = z[1],
@@ -67,9 +66,9 @@ Game.prototype.genMap = function() {
       this.mapDisplay[xLoc][yLoc] = dangersCloseBy;
   }
 
-  this.mapDisplay[this.player.xPos][this.player.yPos] = '&'
-  this.mapDisplay[this.xGoal][this.yGoal] = '!!'
+}
 
+Game.prototype.gameWon = function() {
   if (this.player.xPos === this.xGoal && this.player.yPos === this.yGoal) {
     outputToScreen('🔥🔥🔥🔥🔥 You won the game!  🔥🔥🔥🔥🔥🔥')
     outputToScreen('😄😄😄😄😄😄😄😄😄😄')
@@ -77,6 +76,19 @@ Game.prototype.genMap = function() {
 
     initGame(window.playGame.difficulty)
   }
+}
+
+Game.prototype.genMap = function() {
+  let visLoc = this.player.visitedLocations
+  this.mapDisplay = []
+
+  this.generateUnvisitedAreas()
+  this.generateVisitedAreas(visLoc)
+
+  this.mapDisplay[this.player.xPos][this.player.yPos] = '&'
+  this.mapDisplay[this.xGoal][this.yGoal] = '!!'
+
+  this.gameWon()
 }
 
 Game.prototype.genDangers = function() {
