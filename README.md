@@ -4,7 +4,6 @@ Text based Minesweeper-like maze game. Play at this [website](https://andrewgrem
 ## Theme
 You are a daring explorer.  You decided to scale Mount Denali in a snow storm!  You must find your way to the top, but be careful!  There are dangers along the way.  You will recieve cues on your map when you are near danger, but you must make the right choice where to go!
 
-<<<<<<< HEAD
 Be careful on this great adventurous endeavor! 
 
 The map is a 2d grid, with (1, 1) starting in the top left corner.
@@ -77,4 +76,3 @@ Nearby dangers appear as a number
 * [c]    Show commands again
 * [l]    Show Legend
 * [d]    Change difficulty
->>>>>>> 070393a04c64c0aaaa69f8d20730d0a060042ae0
